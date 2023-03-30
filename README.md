@@ -1,5 +1,5 @@
 # V-programming-book-cn
-入门V语言编程教程-中文版
+教程: 入门V语言编程-中文版
 
 ## Languages Star History Comparison
 
