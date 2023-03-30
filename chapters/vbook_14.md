@@ -1080,7 +1080,7 @@ v run .
 
 现在，我们将评估这样一个创建端点的行为，使得API响应为`201 Created`：
 
-![](img/Getting_Started_with_V_Programming-14.1.jpg)
+![](../img/Getting_Started_with_V_Programming-14.1.jpg)
 
 图14.1 - 使用Postman使用HTTP动词POST创建`Note`
 
@@ -1116,7 +1116,7 @@ v run .
 ```
 5.现在，选择Headers(5)选项卡，如上一个屏幕截图所示。您将能够查看以下响应头：
 
-![](img/Getting_Started_with_V_Programming-14.2.jpg)
+![](../img/Getting_Started_with_V_Programming-14.2.jpg)
 图14.2 - 使用HTTP动词Post创建`Note`的响应头
 
 现在，我们将尝试了解成功创建`Note`操作的响应头：
@@ -1155,7 +1155,7 @@ v run .
 
 现在，我们将尝试创建另一个消息与我们刚刚创建的id 1的`Note`相同的`Note`。因此，我们将将HTTP动词设置为POST，并使用与已存在于数据库中的`Note`的消息字段相同的JSON有效载荷，如下图所示：
 
-![](img/Getting_Started_with_V_Programming-14.3.jpg)
+![](../img/Getting_Started_with_V_Programming-14.3.jpg)
 图14.3 - 使用Postman使用HTTP动词POST创建`Note`，当消息不唯一时
 
 我们可以观察到，在发送非唯一消息后，我们查看以下响应正文，并将状态设置为`400 Bad Request`：
@@ -1174,7 +1174,7 @@ v run .
 
 使用Postman，我们将向有效负载中具有无效JSON格式的`Note`发送POST HTTP动词，如下图所示：
 
-![](img/Getting_Started_with_V_Programming-14.4.jpg)
+![](../img/Getting_Started_with_V_Programming-14.4.jpg)
 图14.4 - 在请求有效负载中具有不正确JSON格式的情况下，使用HTTP动词POST使用Postman创建Note
 
 请注意，请求正文具有一个JSON有效载荷，其中状态字段结尾处有一个额外的逗号。现在，如果单击发送按钮，我们将查看以下响应，以及指示400 Bad Request的状态字段：
@@ -1189,7 +1189,7 @@ v run .
 ```
 另外，我们将在`400 Bad Request`的情况下查看响应头。
 
-![](img/Getting_Started_with_V_Programming-14.5.jpg)
+![](../img/Getting_Started_with_V_Programming-14.5.jpg)
 图14.5 - 使用HTTP动词Post创建`Note`的响应头
 
 从上述屏幕截图中，很明显我们将没有`Content-Location`。这是因为由于格式错误的JSON有效负载，POST操作无法在数据库中创建Note。
@@ -1202,7 +1202,7 @@ v run .
 
 使用Postman，我们将使用GET HTTP动词查询以检索当前不存在于数据库中的`Note`的`Note`，如下图所示：
 
-![](img/Getting_Started_with_V_Programming-14.6.jpg)
+![](../img/Getting_Started_with_V_Programming-14.6.jpg)
 图14.6 - 使用HTTP动词GET查询不存在`id`的笔记
 
 从上述屏幕截图中，我们可以观察到响应正文为空，并且状态设置为`404 Not Found`。
@@ -1228,7 +1228,7 @@ v run .
 
 使用Postman，我们将使用GET HTTP动词查询通过`id`获取`Note`的端点，如下图所示：
 
-![](img/Getting_Started_with_V_Programming-14.7.jpg)
+![](../img/Getting_Started_with_V_Programming-14.7.jpg)
 图14.7 - 使用Postman使用HTTP动词GET按`id`检索`Note`
 
 要检索给定`id`的`Note`，请在Postman应用程序中执行以下步骤：
@@ -1243,7 +1243,7 @@ v run .
 
 5. 现在单击`Headers`选项卡，您将查看以下响应标头：
 
-![](img/Getting_Started_with_V_Programming-14.8.jpg)
+![](../img/Getting_Started_with_V_Programming-14.8.jpg)
 图14.8 - 使用HTTP动词GET按id检索`Note`的响应头
 
 由于响应正文为JSON格式，因此我们可以看到`Content-Type`设置为`application/json`。
@@ -1258,7 +1258,7 @@ v run .
 
 使用Postman，我们将使用GET HTTP动词查询获取所有`Note`的端点，如下图所示：
 
-![](img/Getting_Started_with_V_Programming-14.9.jpg)
+![](../img/Getting_Started_with_V_Programming-14.9.jpg)
 图14.9 - 使用Postman使用HTTP动词GET检索所有`Notes`
 
 要检索所有`Note`，请在Postman应用程序中执行以下步骤：
@@ -1275,7 +1275,7 @@ v run .
 
 6. 现在单击`Headers`选项卡，您将观察以下响应标头：
 
-![](img/Getting_Started_with_V_Programming-14.10.jpg)
+![](../img/Getting_Started_with_V_Programming-14.10.jpg)
 图14.10 - 使用HTTP动词GET检索所有Note后的响应标头
 
 由于响应正文为JSON格式，因此我们可以看到`Content-Type`设置为`application/json`。现在，让我们了解如何使用Postman发送请求以更新Note。
@@ -1288,7 +1288,7 @@ v run .
 
 使用Postman，让我们尝试使用PUT HTTP动词发送更新请求到当前不存在于数据库中的Note的Note，如下图所示：
 
-![](img/Getting_Started_with_V_Programming-14.11.jpg)
+![](../img/Getting_Started_with_V_Programming-14.11.jpg)
 图14.11 - 使用HTTP动词PUT更新检索不到id的Note
 
 例如，要更新`id`为100的`Note`，但在数据库中不存在该`Note`。可以看到，当您点击发送按钮时，响应状态设置为`404 Not Found`。
@@ -1330,7 +1330,7 @@ v run .
 
 使用Postman，让我们尝试使用PUT HTTP动词发送更新请求到`Note`。在此请求的一部分中，我们将使用非唯一消息更新数据库中的`Note`，如下图所示：
 
-![](img/Getting_Started_with_V_Programming-14.12.jpg)
+![](../img/Getting_Started_with_V_Programming-14.12.jpg)
 图14.12 - 使用Postman使用带有非唯一消息的HTTP动词PUT更新`Note`
 
 要更新给定`id`的`Note`，请在Postman应用程序中执行以下步骤，如上一个屏幕截图所示：
@@ -1367,7 +1367,7 @@ v run .
 
 使用Postman，让我们尝试使用PUT HTTP动词发送更新请求到Note，如下图所示：
 
-![](img/Getting_Started_with_V_Programming-14.13.jpg)
+![](../img/Getting_Started_with_V_Programming-14.13.jpg)
 图14.13 - 使用Postman使用HTTP动词PUT更新Note
 
 要更新给定id的Note，请在Postman应用程序中执行以下步骤，如上一个屏幕截图所示：
@@ -1412,7 +1412,7 @@ v run .
 
 由于我们定义了删除`Note` API以响应`204 No Content`，因此我们将在Postman应用程序中评估该行为，如下所示：
 
-![](img/Getting_Started_with_V_Programming-14.14.jpg)
+![](../img/Getting_Started_with_V_Programming-14.14.jpg)
 图14.14 - 使用HTTP动词DELETE使用Postman删除ID为1的`Note`
 
 要删除给定id的`Note`，即1，在Postman应用程序中执行以下步骤：
@@ -1427,7 +1427,7 @@ v run .
 
 5. 当我们切换到`Headers`选项卡时，我们将看到响应标头，如下所示：
 
-![](img/Getting_Started_with_V_Programming-14.15.jpg)
+![](../img/Getting_Started_with_V_Programming-14.15.jpg)
 图14.15 - 使用HTTP动词GET检索所有Note后的响应标头
 
 由于我们由于DELETE操作而未发送任何内容，因此可以看到`Content-Type`设置为`text/plain`。

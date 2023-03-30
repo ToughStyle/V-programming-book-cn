@@ -43,7 +43,7 @@ Windows是多数开发者使用的最受欢迎的操作系统，V也支持它。
 
 3.下载完成后，在默认下载目录中找到名为`v_windows.zip`的存档。右键单击存档，然后单击属性。找到并选择取消勾选复选框，然后单击确定，如下所示：
 
-![](img/Getting_Started_with_V_Programming-2.1.jpg)
+![](../img/Getting_Started_with_V_Programming-2.1.jpg)
 图2.1-v_windows属性显示取消勾选存档
 
 ### 注意
