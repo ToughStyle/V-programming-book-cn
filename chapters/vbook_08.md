@@ -14,7 +14,7 @@
 
 本章的完整源代码可在 GitHub 上获得：
 
-https://github.com/PacktPublishing/Learn-V-Programming/tree/main/Chapter08
+https://github.com/ToughStyle/V-programming-book-cn/codes/Chapter08
 
 ## 介绍结构体
 

@@ -27,7 +27,7 @@ V编程语言支持各种操作系统(OS)，例如Windows、Linux(包括Windows�
 Windows是多数开发者使用的最受欢迎的操作系统，V也支持它。我们将在Windows 10操作系统上安装V编程语言。有两种方式可以在Windows 10操作系统上安装V：
 
 - 从便携式二进制文件安装V(可以从官方V网站 https://vlang.io/ 下载)。
-- 从最新的源代码安装V(可以从V的官方GitHub存储库 https://github.com/vlang/v克隆)。
+- 从最新的源代码安装V(可以从V的官方GitHub存储库 https://github.com/vlang/v 克隆)。
 
 让我们更详细地看一下这两种安装方法。如果您在Windows操作系统上遵循其中任何一种安装方法，则可以跳过备用方法。
 

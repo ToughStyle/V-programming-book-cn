@@ -13,7 +13,7 @@
 
 ### 技术要求
 
-虽然不强制要求，但最好已掌握SQL知识。本章的完整源代码可在 https://github.com/PacktPublishing/Learn-V-Programming/tree/main/Chapter13 上找到。
+虽然不强制要求，但最好已掌握SQL知识。本章的完整源代码可在 https://github.com/ToughStyle/V-programming-book-cn/codes/Chapter13 上找到。
 
 ## 使用JSON入门
 

@@ -16,7 +16,7 @@
 - 映射
 - 技术参考
 
-本章完整的源代码可在https://github.com/PacktPublishing/Learn-VProgramming/tree/main/Chapter05中获得。
+本章完整的源代码可在 https://github.com/ToughStyle/V-programming-book-cn/codes/Chapter05 中获得。
 
 ## 数组
 

@@ -30,7 +30,7 @@
 
 ### 技术要求
 
-本章的完整源代码可在 https://github.com/PacktPublishing/Learn-V-Programming/tree/main/Chapter10 上获得。
+本章的完整源代码可在 https://github.com/ToughStyle/V-programming-book-cn/codes/Chapter10 上获得。
 
 建议您在每个部分的代码示例中使用具有 `.v` 扩展名的新控制台或文件运行代码，以避免变量名称之间的冲突。
 

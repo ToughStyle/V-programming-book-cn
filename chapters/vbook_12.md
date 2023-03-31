@@ -14,7 +14,7 @@
 
 ### 技术要求：
 
-本章的完整源代码可在 https://github.com/PacktPublishing/Learn-V-Programming/tree/main/Chapter12 上获得。
+本章的完整源代码可在 https://github.com/ToughStyle/V-programming-book-cn/codes/Chapter12 上获得。
 
 在 V 中编写测试很简单。在本节中，我们将探讨三个简单的概念，以帮助您开始编写测试。它们如下所示：
 
