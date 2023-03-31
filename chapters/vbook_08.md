@@ -25,7 +25,7 @@ https://github.com/ToughStyle/V-programming-book-cn/codes/Chapter08
 ### 定义结构体
 
 您可以使用 `struct` 关键字后跟结构体名称来在 V 中定义结构体。V 中结构体的基本语法如下所示：
-```V
+```v
 struct STRUCTNAME {
 
     FIELDNAME1 DATATYPE
@@ -35,7 +35,7 @@ struct STRUCTNAME {
 }
 ```
 例如，我们定义一个 `Note` 结构体以了解一个实际应用的结构体在 V 中的外观：
-```V
+```v
 struct Note {
 
     id      int
@@ -49,11 +49,11 @@ struct Note {
 ### 初始化结构体
 
 我们现在将初始化结构体，如下所示：
-```V
+```v
 n := Note{1, 'a simple struct demo'}
 ```
 传递给结构体的参数需要按照它们在结构体定义中出现的顺序排序。我们注意到我们使用值分配给其字段初始化 `Note` 类型的结构体。请注意，结构体字段的值是隐式指定的，按照它们在结构体定义中的顺序被赋给结构体字段。在这种情况下，`id` 将隐式赋值为 `1，message` 的值为` 'a simple struct demo'`：
-```V
+```v
 n := Note{
 
     message: 'a simple struct demo'
@@ -65,7 +65,7 @@ n := Note{
 您还可以在 V 中使用字段名称后跟冒号(:)和要分配的值显式初始化结构体的字段，并适合结构体字段的数据类型。
 
 结构体变量 `n` 的类型是 `Note`，可以通过运行以下代码进行确认：
-```V
+```v
 println(typeof(n).name) // Note
 ```
 ### 访问结构体的字段
@@ -73,7 +73,7 @@ println(typeof(n).name) // Note
 您可以直接访问结构体的字段，这些字段可在结构体值对象上使用。
 
 例如，要打印 `Note` 结构体的 `message` 的值，您可以在值对象上使用 `.field`，如下所示：
-```V
+```v
 n := Note{1, 'a simple struct demo'}println(n.message)
 ```
 输出将打印 `Note` 结构体的 `message` 字段保存的值，如下所示：
@@ -83,13 +83,13 @@ a simple struct demo
 ### 了解堆结构
 
 当一个结构体被初始化时，它的内存默认在堆栈上分配。通过在初始化时在结构体名称前面添加 `&` ，可以在堆上分配结构体的内存，示例如下：
-```V
+```v
 n1 := &Note{1, 'this note will be allocated on heap'}
 ```
 上述代码示例演示了堆结构的初始化，通过在结构体名称前添加 `&` 来识别。访问堆结构的字段与普通结构体类似。
 
 堆结构体变量 `n1` 的类型是 `&Note` ，可以通过运行以下代码进行确认：
-```V
+```v
 println(typeof(n1).name) // &Note
 ```
 处理携带大量数据的结构体时，堆结构体特别有用。因此，选择堆结构体可以减少显式内存分配。
@@ -103,7 +103,7 @@ println(typeof(n1).name) // &Note
 所有结构体的字段默认都是不可变的，只能初始化一次。要更改结构体的字段值，需要将其指定在标有 `mut:` 的部分下方。在 `mut:` 下定义的所有字段都将成为可变字段。
 
 我们将更改结构体 `Note` ，以使 `message` 字段可变：
-```V
+```v
 struct Note {
 
     id      int
@@ -115,13 +115,13 @@ mut:
 }
 ```
 现在，我们将声明并初始化 `Note` 结构体，如下所示：
-```V
+```v
 n := Note {1, 'a simple struct demo'}
 
 println(n)
 ```
 输出将打印 `Note` 对象到控制台，在新行中显示如下：
-```V
+```v
 Note{
 
     id: 1
@@ -131,7 +131,7 @@ Note{
 }
 ```
 让我们更新 `Note` 结构体的 `message` 字段，如下所示：
-```V
+```v
 n := Note {1, 'a simple struct demo'}
 
 n.message = 'a simple struct updated'
@@ -141,7 +141,7 @@ n.message = 'a simple struct updated'
 error: `n` is immutable, declare it with `mut` to make it mutable
 ```
 让我们将变量声明更新为可变的性质。同时，我们将尝试更新 `message` 字段的值，如下所示：
-```V
+```v
 mut n := Note { 1, 'a simple struct demo' }
 
 n.message = 'a simple struct updated'
@@ -149,7 +149,7 @@ n.message = 'a simple struct updated'
 要更新结构体的字段，必须同时使字段和初始化结构体的变量都是可变的。
 
 此时，完整的代码如下所示：
-```V
+```v
 module main
 
 struct Note {
@@ -179,7 +179,7 @@ fn main() {
 }
 ```
 上述代码的输出如下所示：
-```V
+```v
 before update
 
 Note{
@@ -201,7 +201,7 @@ Note{
 }
 ```
 现在，让我们看看如果尝试更新 `Note` 结构体的不可变 `id` 字段会发生什么情况：
-```V
+```v
 mut j := Note{1, 'a simple struct demo'}
 
 j.id = 2
@@ -224,7 +224,7 @@ error: field `id` of struct `Note` is immutable
 在上面的代码中，当我们第二次更新`message`时，`id`字段被忽略了。
 
 输出如下：
-```V
+```v
 Note{
 
     id: 1
@@ -234,7 +234,7 @@ Note{
 }
 ```
 未指定的id在短结构体类型初始化期间默认为零
-```V
+```v
 Note{
 
     id: 0
@@ -262,7 +262,7 @@ Note{
 - 将多个可变字段添加到结构体中
 
 我们可以使用`mut`关键字后跟独立一行的:来定义结构体的所有可变字段。定义结构体中可变字段的语法如下所示：
-```V
+```v
 struct Note {
 
     id      int
@@ -295,7 +295,7 @@ mut:
 表8.1-了解结构体字段的访问控制
 
 让我们将各种访问修饰符应用到`Note`结构体的字段中，并详细讨论我们正在做什么：
-```V
+```v
 pub struct Note {
 
 pub:
@@ -315,7 +315,7 @@ pub mut:
 
 有时候，如果一个结构体中的某些字段没有值，它的存在是没有意义的，例如一个`Note`结构体没有`message`字段就变得无用了。为了防止这种情况的发生，您可以使用方括号(`[]`)将`required`关键字括起来放在字段右侧，以强制标记某些字段。这经常被称为将结构体字段注释为必需的。使用此注释标志，编译器将知道该特定字段标记为必需。以下代码示例显示了`Note`结构体中带有`[required]`注释的`message`字段。
 
-```V
+```v
 pub struct Note {
 
 pub:
@@ -333,7 +333,7 @@ pub mut:
 
 现在，让我们创建一个`Note`结构体，但实际上不会将任何值初始化到`message`字段中，如下所示：
 
-```V
+```v
 _ := Note{
 
     id: 1
@@ -351,7 +351,7 @@ error: field `Note.message` must be initialized
 
 由于我们已将`message`字段标记为`[required]`，因此我们必须从此时开始初始化`message`字段。完整的代码，包括初始化`message`字段，如下所示：
 
-```V
+```v
 module main
 
 pub struct Note {
@@ -391,7 +391,7 @@ fn main() {
 
 为了说明这种用例，我们将修改`Note`结构体以适应两个新字段，即`created`和`due`。以下是创建具有分配默认值的结构体字段的语法：
 
-```V
+```v
 import time
 
 pub struct Note {
@@ -417,7 +417,7 @@ pub mut:
 
 现在，我们将创建一个`Note`结构体，比如要订购杂货，然后打印`Note`，如下所示：
 
-```V
+```v
 n := Note{
 
     id: 1
@@ -431,7 +431,7 @@ println(n)
 
 这里是输出：
 
-```V
+```v
 Note{
 
     id: 1
@@ -451,7 +451,7 @@ Note{
 
 需要注意的是，尽管我们没有为`status`分配任何值，但它被赋予了`false`值。这是因为，在V中，结构体字段的值默认情况下被赋为零。在这种情况下，`status`的默认值被赋为`bool`数据类型的默认值`false`。因此，即使未初始化`status`字段的任何值，`status`字段的值也将显示为`false`。
 完整的代码现在将显示如下所示：
-```V
+```v
 import time
 
 pub struct Note {
@@ -491,7 +491,7 @@ fn main() {
 ### 为结构体定义方法
 
 V允许为结构体定义方法。方法是带有特殊接收器参数的函数，接收器参数出现在fn和方法名称之间。它们允许我们以方便的方式向结构体添加函数。方法是一种访问结构体属性以执行某些例程的函数。要为结构体定义方法，请按照以下语法：
-```V
+```v
 fn (r RECEIVER_TYPE) METHOD_NAME(OPTIONAL_INPUT_ARGUMENTS)RETURN_TYPE {
 
     METHOD BODY
@@ -505,7 +505,7 @@ fn (r RECEIVER_TYPE) METHOD_NAME(OPTIONAL_INPUT_ARGUMENTS)RETURN_TYPE {
 属于结构体的方法需要放置在与结构体相同的模块中。
 
 让我们回到`Note`结构体，并创建一个检查`message`字段是否为空的方法。即使我们可以强制结构体字段为`[required]`，但是`message`可以提供空字符串的情况仍然存在。为了验证这一点，让我们为`Note`结构体创建下面的方法：
-```V
+```v
 pub fn (n Note) is_empty_message() bool {
 
     return n.message.len < 1
@@ -513,7 +513,7 @@ pub fn (n Note) is_empty_message() bool {
 }
 ```
 现在，我们可以在初始化后的`Note`结构体上调用此方法来检查`message`字段是否为空。为了演示目的，将`message`字段设置为空字符串，代码如下所示：
-```V
+```v
 module main
 
 import time
@@ -581,7 +581,7 @@ message is empty
 想象一下，您需要创建一个新的结构体。在创建结构体过程中，您会发现更多的字段成为了您正在定义的结构体的一部分。可能有一些字段彼此相关，但它们可能不起到表示您正在声明的结构体的重要角色。在这种情况下，这些字段可以移动到单独的结构体中，并作为其一个字段呈现在主结构体内部。在这种情况下，V允许将一个结构体作为另一个结构体的字段添加到内部。将结构体添加到另一个结构体内部的唯一先决条件是，类型为`struct`的字段必须在结构体体的开始处声明。
 为了说明，让我们将 `Note` 结构体中的 `created` 和 `due` 字段移动到另一个结构体中(假设是 `NoteTimeInfo`)如下所示，也就是将 `NoteTimeInfo` 结构体添加为 `Note` 结构体的字段：
 
-```V
+```v
 import time
 
 // NoteTimeInfo is a struct to store time info of Note
@@ -622,7 +622,7 @@ pub mut:
 
 现在，让我们初始化 `Note` 结构体并访问 `due` 属性，实际上它是 `NoteTimeInfo` 的一部分：
 
-```V
+```v
 n := Note{
 
     id: 1
@@ -638,7 +638,7 @@ println('Due date: $n.due')
 
 让我们尝试使用以下代码打印整个 `Note`：
 
-```V
+```v
 println(n)
 ```
 输出结果如下：
@@ -660,19 +660,19 @@ Note{
 
 例如，如果我们想将现有笔记的到期日期延长两天，一种方法是直接访问 `NoteTimeInfo` 的字段而不必明确指定 `NoteTimeInfo` 字段，并更新字段，如下所示：
 
-```V
+```v
 n.due = n.due.add_days(2)
 ```
 
 另一种方法是显式指定类型为结构体的字段的名称，这里是 `NoteTimeInfo`，然后指定其字段，如下所示：
 
-```V
+```v
 n.NoteTimeInfo.due = n.NoteTimeInfo.due.add_days(2)
 ```
 
 下面展示了访问结构体字段时的两种方法，其中结构体是另一个结构体的结构体字段：
 
-```V
+```v
 module main
 
 import time
@@ -770,7 +770,7 @@ Note{
 由于 V 不支持默认函数参数或命名参数，因此可以使用尾随结构体字面量语法。在 V 中，可以定义接受结构体作为输入参数的函数。因此，我们可以将具有默认值的结构体传递给接受该结构体作为输入参数的函数。
 
 例如，让我们创建一个购买杂货品的 `Note` 结构体的函数。该函数将接受提供为输入参数的 `Note` 结构体，并创建新的 `Note` 结构体，将短语`'Buy Groceries:'`添加到每个新便签正在创建的消息字段之前，如下所示：
-```V
+```v
 fn new_grocery_note(n Note) &Note {
 
     return &Note{
@@ -784,19 +784,19 @@ fn new_grocery_note(n Note) &Note {
 }
 ```
 现在，我们可以创建一张购买杂货品的便签，如下所示：
-```V
+```v
 g := new_grocery_note(id: 1, message: 'Milk')
 
 println('$g.message is due by $g.due')
 ```
 上述代码片段演示了向接受结构体作为其输入参数的函数传递值的方法。请注意，参数是结构体的字段，以及我们要为这些字段分配的值。还请注意，多个字段名称：值对之间用逗号(,)分隔。可以选择指定结构体的名称，就像我们在先前的代码中看到的那样。或者，您可以明确提到结构体的名称，如下所示：
-```V
+```v
 g := new_grocery_note(Note{id: 1, message: 'Milk'})
 
 println('$g.message is due by $g.due')
 ```
 假设我们想将笔记的截止日期延迟一天。为此，我们可以创建一个函数，以便每次想要扩展到期日期时不必重新编写完整的字段赋值。只需通过传递现有注释来调用此可重用代码，它会通过一天扩展截止日期：
-```V
+```v
 fn extend_due_by_a_day(n Note) &Note {
 
     return &Note{
@@ -816,7 +816,7 @@ fn extend_due_by_a_day(n Note) &Note {
 }
 ```
 您可以在已经创建的 `Note` 结构体上调用此方法，该方法将到期日期再延长一天，或者可以直接创建一个新的 `Note`，其默认到期日期为创建时间的两天后：
-```V
+```v
 n := extend_due_by_a_day(g)
 
 println('After extending due date by a day')
@@ -826,7 +826,7 @@ println('$n.message is due by $n.due')
 上述代码演示了向函数传递结构体的另一种方法。在这里，我们直接将早先通过 `new_grocery_note` 函数获得的新变量 `g` 作为参数传递给 `extend_due_by_a_day` 函数。
 
 将这些组合起来，我们将看到下面的程序，演示了使用尾随结构体字面量的函数工作方式：
-```V
+```v
 module main
 
 import time

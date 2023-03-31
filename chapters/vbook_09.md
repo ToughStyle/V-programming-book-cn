@@ -19,14 +19,14 @@
 ### 定义模块的语法
 
 V允许您使用 module 关键字后跟模块名称来定义一个模块。以下代码指定了如何定义一个模块的语法:
-```V
+```v
 module MY_MODULE
 ```
 在上述语法中，MY_MODULE 可以是任何名称，表示模块内存在的功能。模块命名约定与变量相似，详见第三章「变量、常量和代码注释」的变量命名约定部分。
 ### 导入模块的语法
 
 V允许您使用 `import` 关键字导入一个模块，以下代码展示了导入模块的语法：
-```V
+```v
 import MY_MODULE
 ```
 上面的语法展示了如何消费名为 `MY_MODULE` 的模块。我们可以看到，关键字 `import` 后必须指定模块名称。接下来，我们来看一下访问已导入模块成员的语法。
@@ -34,7 +34,7 @@ import MY_MODULE
 ### 访问模块成员的语法
 
 一旦您导入了任何模块，它就必须被消费，这意味着我们必须调用至少一个在模块中使用 `pub` 关键字标记的公共成员，例如函数、结构体、常量或枚举。以下是演示如何消费已导入模块的公共成员(例如函数或结构体)的语法：
-```V
+```v
 MY_MODULE.PUBLIC_MEMBERS_OF_MY_MODULE
 ```
 通过指定已导入模块的名称后跟一个.(点)，然后是模块内使用 `pub` 关键字标记为公共成员的成员，可以访问已导入模块的公共成员。
@@ -57,7 +57,7 @@ warning: module 'MY_MODULE' is imported but never used。
 - 定义初始化函数以执行一次性的模块级别初始化功能。
 
 本章中显示的所有V代码都将以注释形式开始，指示文件名以及相对于我们正在工作的项目的目录的路径。这不适用于展示V代码片段的常见命令和片段：
-```V
+```v
 // file: hello/file_name.v
 ```
 例如，如果您在代码块开头找到上面示例中展示的注释，则表示该代码属于名为 `file_name.v` 的文件，该文件位于名为 `hello` 的目录下。
@@ -71,7 +71,7 @@ warning: module 'MY_MODULE' is imported but never used。
 在开始之前，我们将创建一个名为 `modulebasics` 的演示V项目。然后，我们将通过示例在该项目中实现所有前述原则，并理解它们。以下是创建演示项目的步骤：
 
 1. 从终端进入任意目录，并运行以下命令：
-```V
+```v
 v new modulebasics
 ```
 您将提示输入项目描述、版本和许可证信息，具体如下：
@@ -89,7 +89,7 @@ Complete!
 2. 提供描述、版本和许可证信息，或通过按 `Enter` 键忽略，您会看到提示显示项目创建状态为完成。
 
 3. 现在，从命令提示符中，将当前目录设置为刚刚创建的新项目，执行以下命令：
-```V
+```v
 cd modulebasics
 ```
 完成上述步骤后，您将具有一个名为 `modulebasics` 的新V项目，其中包含三个文件，位于一个名为 `modulebasics` 的目录中。这三个文件分别是：
@@ -97,7 +97,7 @@ cd modulebasics
 a)`.gitignore`，用于Git，并保存需要在将我们的项目推送到基于Git的源控件(如GitHub、GitLab或BitBucket)时忽略的文件、文件扩展名和目录的列表。
 
 b)`modulebasics.v`，是我们刚刚创建的应用程序的入口点。`v new`命令还将样板代码添加到`modulebasics.v`文件中，如下所示：
-```V
+```v
 // file: modulebasics.v
 
 module main
@@ -119,7 +119,7 @@ fn main() {
 mkdir mod1
 ```
 上述命令将创建名为`mod1`的目录，这将是模块的名称。在mod1目录中创建一个名为`file1.v`的文件，并包含以下代码：
-```V
+```v
 // file: mod1/file1.v
 
 module mod1
@@ -147,7 +147,7 @@ pub fn hello(){
 ### 导入模块
 
 由于我们已经成功创建了名为`mod1`的模块，因此我们将继续从`modulebasics.v`文件中的`main`模块导入此模块。更新`modulebasics.v`文件中的代码以导入`mod1`模块，如下所示：
-```V
+```v
 // file: modulebasics.v
 
 module main
@@ -181,7 +181,7 @@ Hello World!
 正如我们已经学习到的，第二个原则是导入的模块必须在代码中使用，因此让我们继续使用`mod1`模块的公共成员。
 
 我们已经在`mod1`模块中定义了一个名为`hello`的公共函数。可以通过导入的`mod1`模块和`mod1.hello()`语法来访问`mod1`模块的公共`hello`函数。现在，`modulebasics.v`文件中的代码将更改如下：
-```V
+```v
 // file: modulebasics.v
 
 module main
@@ -215,7 +215,7 @@ Hello World!
 如果模块中有多个文件，则所有文件都必须定义相同的模块定义。无法为模块中的所有文件定义相同的模块将导致错误，该错误与`builder error: bad module definition`相似。
 
 让我们创建另一个名为`file2.v`的文件，其位于`mod1`模块中，并包含以下代码：
-```V
+```v
 // file: mod1/file2.v
 
 fn hello2() {
@@ -258,7 +258,7 @@ builder error: bad module definition: .v imports module  "mod1" but E:12.v is de
 根据第三个原则，在模块中的多个V文件必须定义相同的模块，我们可以通过在`file2.v`中定义模块定义为`module mod1`来消除此错误，这类似于`file1.v`。
 
 现在，更新后的`file2.v`文件将显示如下：
-```V
+```v
 // file: mod1/file2.v
 
 module mod1
@@ -296,7 +296,7 @@ E:\MODULEBASICS
         file2.v
 ```
 让我们尝试从`main`模块访问`hello2`函数，代码如下：
-```V
+```v
 // file: modulebasics.v
 
 module main
@@ -316,7 +316,7 @@ fn main() {
 error: function mod1.hello2 is private
 ```
 根据模块使用的第四个原则，模块的私有和公共成员都可以从模块内的任何地方访问。因此，让我们尝试通过将`mod1`模块的公共`hello`函数更新为调用`hello2`私有函数来理解此原则：
-```V
+```v
 // file: mod1/file1.v
 
 module mod1
@@ -332,7 +332,7 @@ pub fn hello() {
 }
 ```
 按照模块使用的第五个原则，只有模块的公共成员可以在模块外部访问。因此，让我们更新`modulebasics.v`文件，使其调用公共`hello`函数，代码如下所示：
-```V
+```v
 module main
 
 import mod1
@@ -354,7 +354,7 @@ Hello 2 from mod1!
 ### 循环引用的影响
 
 有些情况下，程序员可能会遇到两个模块彼此使用功能的情况。在这种情况下，这些模块的导入可能具有循环性质。例如，假设您在`modulebasics`项目中有两个名为`m1`和`m2`的模块，其中包含以下代码：
-```V
+```v
 // file: m1/file1.v
 
 module m1
@@ -372,7 +372,7 @@ pub fn hello() {
 在这里，前面的代码属于`m1`模块，其中具有使用`pub`关键字标记的`greet_from_m1`常量。它还具有打印来自导入的`m2`模块的常量的公共`hello`函数。
 
 现在，让我们看一下具有以下代码的`m2`模块：
-```V
+```v
 // file: m2/file1.v
 
 module m2
@@ -390,7 +390,7 @@ pub fn hello() {
 上述代码属于`m2`模块，其中具有使用`pub`关键字标记的`greet_from_m2`常量。它还具有打印来自导入的`m1`模块的常量的公共`hello`函数。因此，`m1`模块引用了`m2`模块，而`m2`模块引用了`m1`模块，这会引入循环或循环引用。
 
 现在，如果我们更新`modulebasics.v`文件，它将类似于以下内容：
-```V
+```v
 // file: modulebasics.v
 
 module main
@@ -440,7 +440,7 @@ builder error: error: import cycle detected between the following modules:
 虽然可以定义一个至少具有一个输入参数的公共函数`init`，但它不会像模块的初始化器函数那样起作用。
 
 让我们使用示例探索`init()`函数。在我们的演示项目`modulebasics`中，让我们修改`mod1`模块，将`file1.v`更新为以下代码：
-```V
+```v
 // file: mod1/file1.v
 
 module mod1
@@ -458,7 +458,7 @@ fn init() {
 }
 ```
 在这里，我们在`mod1`的`file1.v`文件中添加了新的私有的`init`函数。在这种情况下，我们只是向控制台打印一个消息，显示 `Initializing mod1`。现在，我们将更新`modulebasics.v`文件的代码，指示以下主模块：
-```V
+```v
 // file: modulebasics.v
 
 module main
@@ -484,7 +484,7 @@ Hello from mod1!
 从另一个模块访问模块的常量是一种简单的方法。只要用`pub`关键字标记为`public`，就可以访问模块的常量。
 
 在我们的示例`modulebasics`项目中，假设具有以下代码的`mod1`模块中的`file1.v`：
-```V
+```v
 // file : mod1/file1.v
 
 module mod1
@@ -492,7 +492,7 @@ module mod1
 pub const greet_msg = 'Greeting from mod1!'
 ```
 在上面的代码中，我们在mod1模块中定义了一个名为`greet_msg`的常量。另外，我们使用pub关键字将该常量标记为`public`。我们将学习如何从主模块访问此常量。更改主模块中的代码，使其如下所示：
-```V
+```v
 // file: modulebasics.v
 
 module main
@@ -514,7 +514,7 @@ Greeting from mod1!
 ### 访问模块的结构体和嵌入式结构体
 
 在本节中，我们将详细探讨如何从主模块访问mod1模块的结构体字段和嵌入式结构体字段。我们将更新modulebasics项目，以便在mod1模块中定义两个结构体NoteTimeInfo和Note，如下所示：
-```V
+```v
 module mod1
 
 import time
@@ -556,7 +556,7 @@ pub mut:
 类似地，对于Note结构体，将id结构体字段标记为public，将message和status字段标记为public和mutable。
 
 现在，让我们更新主模块以访问结构体字段和嵌入式结构体字段如下：
-```V
+```v
 // file: modulebasics.v
 
 module main

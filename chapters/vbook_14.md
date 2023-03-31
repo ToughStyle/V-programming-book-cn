@@ -100,7 +100,7 @@ c:/notes_api
 
 1. 首先，导入`vweb`和`sqlite`模块，如下所示：
 
-```V
+```v
 // file: main.v
 
 module main
@@ -112,7 +112,7 @@ import sqlite
 
 2. 接下来，我们将创建一个名为`App`的结构体，如下所示：
 
-```V
+```v
 // file: main.v
 
 struct App {
@@ -130,7 +130,7 @@ mut:
 
 3. 接下来，我们将修改`main`函数，如下所示：
 
-```V
+```v
 // file: main.v
 
 fn main() {
@@ -187,7 +187,7 @@ fn main() {
 
 为了实现这一点，在`util.v`文件中，我们将添加一个名为`CustomResponse`的结构体，该结构体具有一个`status`字段来表示状态代码，以及一个`message`字段，该字段提供有关微服务端点执行的操作状态的详细信息，如下所示：
 
-```V
+```v
 // file: util.v
 
 module main
@@ -213,7 +213,7 @@ fn (c CustomResponse) to_json() string {
 
 接下来，我们将添加几个常量到`util.v`文件中，如下所示：
 
-```V
+```v
 // file: util.v
 
 const (
@@ -257,7 +257,7 @@ const (
 
 我们将从导入所需的`vweb`和`json`库开始。此外，我们将在V代码中定义一个名为`Note`的结构体，它是一个对象，将映射到关系数据库世界中的`Notes`数据库表，如下所示：
 
-```V
+```v
 // file: note.v
 
 module main
@@ -320,7 +320,7 @@ fn (n Note) to_json() string {
 
 我们正在使用的路由，从中可以访问create端点，是/notes，HTTP动词是post，如下所示：
 
-```V
+```v
 ['/notes'; post]
 
 fn (mut app App) create() vweb.Result {
@@ -339,7 +339,7 @@ fn (mut app App) create() vweb.Result {
 
 以下代码实现了前面的点，应添加到create()：
 
-```V
+```v
 n := json.decode(Note, app.req.data) or {
     app.set_status(400, 'Bad Request')
     er := CustomResponse{400, invalid_json}
@@ -364,7 +364,7 @@ if notes_found.len > 0 {
 
 此外，我们还将检索刚创建的Note对象的id字段，如下所示：
 
-```V
+```v
 // 保存到数据库
 sql app.db {
     insert n into Note
@@ -387,7 +387,7 @@ new_id := app.db.last_id() as int
 4. `Content-Type` 响应头将被设置为`application/json`。
 
 符合以上列表中规格要求的代码如下：
-```V
+```v
 // build new note object including the new_id and send
 // it as JSON response
 note_created := Note{new_id, n.message, n.status}
@@ -398,7 +398,7 @@ return app.json(note_created.to_json())
 在这里，由于我们使用 `app.json` 返回刚刚在数据库中新创建的编码`Note`的JSON响应，因此 `Content-Type` 的响应头将被设置为 `application/json`。
 
 结合我们已经学到的知识，创建`Note`端点将如下所示：
-```V
+```v
 ['/notes'; post]
 fn (mut app App) create() vweb.Result {
 
@@ -487,7 +487,7 @@ fn (mut app App) create() vweb.Result {
 现在，我们将创建一个 `App` 的结构方法，使用名称 `read` 。`read` 方法将返回类型为 `vweb.Result` 。此外，我们将使用 `;` 定义装饰符指示路由和 HTTP 动词。
 
 我们使用的路由，从中可以访问 `read` 端点，是 `/notes/:id` ，HTTP 动词是 get ，如下所示：
-```V
+```v
 ['/notes/:id'; get]
 fn (mut app App) read(id int) vweb.Result {
 
@@ -500,7 +500,7 @@ fn (mut app App) read(id int) vweb.Result {
 ### 使用ORM查询根据其id选择记录
 
 使用内置的 orm-based 语法从数据库中选择与在资源URL中存在的 `id` 参数相同的 `id` 的 `Note` ：
-```V
+```v
     n := sql app.db {
 
         select from Note where id == id
@@ -516,7 +516,7 @@ fn (mut app App) read(id int) vweb.Result {
 2. 状态码将显示`404, Not Found`。
 
 下面的代码实现了上述要点：
-```V
+```v
     // 检查note是否存在
     if n.id != id {
 
@@ -543,7 +543,7 @@ fn (mut app App) read(id int) vweb.Result {
 4. `Content-Type`响应头将被设置为`application/json`。
 
 下面的代码反映了上述列表中提到的规格：
-```V
+```v
     // 找到note并返回它
     ret := json.encode(n)
 
@@ -555,7 +555,7 @@ fn (mut app App) read(id int) vweb.Result {
 
 将我们学到的位和部分组合起来，`read note` 端点将像下面这样：
 
-```V
+```v
 ['/notes/:id'; get]
 fn (mut app App) read(id int) vweb.Result {
 
@@ -618,7 +618,7 @@ fn (mut app App) read(id int) vweb.Result {
 ### 使用ORM查询选择一张表中的所有记录
 
 使用内置的 orm-based 语法从数据库中选择所有`Note`：
-```V
+```v
     n := sql app.db {
 
         select from Note
@@ -640,7 +640,7 @@ fn (mut app App) read(id int) vweb.Result {
 - `Content-Type`响应头将被设置为`application/json`。
 
 以下是上述步骤的代码：
-```V
+```v
     ret := json.encode(n)
 
     app.set_status(200, 'OK')
@@ -651,7 +651,7 @@ fn (mut app App) read(id int) vweb.Result {
 
 将我们学到的位和部分组合起来，`read all notes`端点将像下面这样：
 
-```V
+```v
 ['/notes'; get]
 fn (mut app App) read_all() vweb.Result {
 
@@ -730,7 +730,7 @@ fn (mut app App) read_all() vweb.Result {
 此外，我们将用`;`分隔的属性修饰该方法，指示路由和HTTP动词。
 
 我们使用的路由，从中可以访问更新端点，是`/notes/:id`，HTTP动词为put，如下所示：
-```V
+```v
 ['/notes/:id'; put]
 fn (mut app App) update(id int) vweb.Result {
 
@@ -749,7 +749,7 @@ fn (mut app App) update(id int) vweb.Result {
 - 状态码将显示`400, Bad Request`。
 
 以下代码反映了在存在格式不正确的JSON的情况下处理请求的前面规范：
-```V
+```v
     // malformed json
     n := json.decode(Note, app.req.data) or {
 
@@ -772,7 +772,7 @@ fn (mut app App) update(id int) vweb.Result {
 - 状态码将显示`404, Not Found`。
 
 基于上述条件，以下是根据提供的`id`不存在基于的记录的响应代码：
-```V
+```v
     // check if note to be updated exists
     note_to_update := sql app.db {
 
@@ -795,7 +795,7 @@ fn (mut app App) update(id int) vweb.Result {
 ### 验证笔记的`message`字段是否唯一
 
 当我们根据提供的`id`找到`Note`时，需要使用内置的orm-based语法检查要更新的`Note`的`message`字段是否唯一，如下所示：
-```V
+```v
     // before update, we must ensure the note's message is unique
 
     // id != id for idempotency
@@ -815,7 +815,7 @@ fn (mut app App) update(id int) vweb.Result {
 - 状态码将显示`400, Bad Request`。
 
 当`Note`的`message`不唯一时，前面点的响应代码将如下所示：
-```V
+```v
     if res.len > 0 {
 
         app.set_status(400, 'Bad Request')
@@ -831,7 +831,7 @@ fn (mut app App) update(id int) vweb.Result {
 ### 使用ORM查询更新记录
 
 当找到要更新的`Note`且`message`是唯一的，您可以根据请求正文中的JSON有效载荷更新`Note`，其中`Note`的`id`与资源URL中存在的`id`匹配，如下所示：
-```V
+```v
     // update the note
     sql app.db {
 
@@ -854,7 +854,7 @@ fn (mut app App) update(id int) vweb.Result {
 - `Content-Type`响应头将被设置为`application/json`。
 
 对应的代码如下：
-```V
+```v
     updated_note := Note{id, n.message, n.status}
 
     ret := json.encode(updated_note)
@@ -865,7 +865,7 @@ fn (mut app App) update(id int) vweb.Result {
 ```
 将我们刚刚学到的知识点整合起来，更新Note的端点将如下所示：
 
-```V
+```v
 ['/notes/:id'; put]
 fn (mut app App) update(id int) vweb.Result {
 
@@ -983,7 +983,7 @@ fn (mut app App) update(id int) vweb.Result {
 
 我们使用的路由是可访问删除端点的`/notes/:id`，并且HTTP动词为delete，如下所示：
 
-```V
+```v
 ['/notes/:id'; delete]
 fn (mut app App) delete(id int) vweb.Result {
 
@@ -998,7 +998,7 @@ fn (mut app App) delete(id int) vweb.Result {
 
 以下代码使用与资源URL中存在的`id`参数相同的内置orm语法从数据库中删除`Note`：
 
-```V
+```v
     sql app.db {
 
         delete from Note where id == id
@@ -1020,7 +1020,7 @@ fn (mut app App) delete(id int) vweb.Result {
 - `Content-Type`响应头将设置为`text/plain`。
 
 符合前述标准的代码如下：
-```V
+```v
     app.set_status(204, 'No Content')
 
     return app.ok('')
@@ -1028,7 +1028,7 @@ fn (mut app App) delete(id int) vweb.Result {
 这里，Content-Type响应头将设置为text/plain。这是因为我们使用app.ok返回空响应的纯文本形式。
 
 将刚刚学到的所有关键点结合起来，delete端点将如下所示：
-```V
+```v
 ['/notes/:id'; delete]
 fn (mut app App) delete(id int) vweb.Result {
 

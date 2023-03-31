@@ -20,7 +20,7 @@
 JSON是应用程序之间通信数据的最常用格式，例如HTTP API或Web应用程序。其他数据格式包括XML，CSV，TSV和文本文件等。
 
 为了进行演示，请考虑以下`Note`结构体：
-```V
+```v
 struct Note {
 
     id      int
@@ -90,7 +90,7 @@ JSON解码是将JSON数据转换为V中的对象的过程。
 `decode`函数接受两个参数。第一个参数是需要将JSON解码为的类型。第二个参数是表示为字符串的JSON数据。
 
 `decode`函数具有可选的返回类型。因此，如果提供了不正确的输入，我们可以使用`or {}`块处理错误。在成功解码的情况下，它返回一个对象，其类型等效于作为`decode`函数输入参数提供的第一个参数。以下示例显示解码JSON对象：
-```V
+```v
 import json
 
 fn main() {
@@ -112,7 +112,7 @@ fn main() {
 为简洁起见，在上面的代码中没有指定`Note`结构体。我们可以看到，要解码JSON字符串，我们必须使用`import json`语句，并使用两个输入参数调用解码函数。在此示例中，我们要将JSON字符串解码为`Note`类型。我们还可以看到`decode`函数后面跟着一个`or`块，并且我们正在处理不正确JSON数据的情况。
 
 上面代码的输出结果如下：
-```V
+```v
 Note
 
 Note{
@@ -126,7 +126,7 @@ Note{
 }
 ```
 如果JSON字符串格式错误，如下面的代码所示，则将在控制台上打印错误消息：
-```V
+```v
 n := json.decode(Note, '{"id":1,"message":"Plan a holiday","status":false') or {
 
     panic('invalid json data')
@@ -142,7 +142,7 @@ n := json.decode(Note, '{"id":1,"message":"Plan a holiday","status":false') or {
 将对象编码为JSON是将V中的对象转换为JSON字符串的过程。`encode`函数接受一个输入参数，并返回表示JSON数据的字符串。
 
 以下代码演示了如何使用`encode`方法：
-```V
+```v
 import json
 
 fn main() {
@@ -197,7 +197,7 @@ fn main() {
 已经了解了V的ORM属性，现在我们将创建一个简单的结构体，类似于关系型数据库中的表格映射。
 
 考虑以下`Note`结构体，我们想将其与数据库中的Notes表关联起来：
-```V
+```v
 [table:'Notes']
 struct Note {
     id      int    [primary; sql: serial]
@@ -275,7 +275,7 @@ v run .
 要连接到数据库，我们需要导入sqlite库，然后使用`connect`方法，该方法在导入sqlite后将可用。
 
 现在，让我们开始编辑`orm_demo.v`文件。替换`orm_demo.v`文件的内容，以使其如下所示：
-```V
+```v
 module main
 
 import sqlite
@@ -314,7 +314,7 @@ fn main() {
 ### 创建表格
 
 由于我们已经使用V定义了`Notes`表的外形，如`Note`结构体所示，因此我们将修改`main`函数以使用以下代码创建表格：
-```V
+```v
 fn main() {
 
     db := sqlite.connect('NotesDB.db') or { panic(err) }
@@ -343,7 +343,7 @@ CREATE TABLE IF NOT EXISTS `Notes` (
 ### 删除表格
 
 在上面的代码中，我们看到如何通过调用使用`db.exec`的基于SQL的命令直接删除表格。或者，您可以使用V的ORM语法删除表格，如下所示：
-```V
+```v
 sql db {
 
     drop table Note
@@ -359,7 +359,7 @@ sql db {
 ### 插入记录
 
 要执行插入操作，我们将构建一对Note结构类型的对象，如下所示：
-```V
+```v
 n1 := Note{
 
     message: 'Get some milk'
@@ -377,7 +377,7 @@ n2 := Note{
 }
 ```
 从上面的代码中，我们可以看到n1和n2对象是Note类型的。现在，我们将使用V的ORM语法执行插入操作，如下所示：
-```V
+```v
 sql db {
 
     insert OBJECT_VAR into STRUCT_NAME
@@ -386,7 +386,7 @@ sql db {
 ```
 从上述语法中，`OBJECT_VAR`一词指的是`STRUCT_NAME`类型的对象。 `STRUCT_NAME`一词将是`Note`结构体的名称。由于我们有两个`Note`对象`n1`和`n2`，因此我们将对这两个对象执行插入操作，如下所示：
 
-```V
+```v
 sql db {
 
     insert n1 into Note
@@ -408,7 +408,7 @@ INSERT INTO `Notes` (`detail`, `status`) VALUES (?1, ?2);
 
 要获取ORM已执行任何DML操作的记录的主键标识符，我们可以通过调用last_id()函数访问它，如下所示：
 
-```V
+```v
 println(db.last_id())
 ```
 
@@ -416,7 +416,7 @@ println(db.last_id())
 
 由于`Note`中的id主键是整数类型，我们可以将其转换为`int`类型，如下所示：
 
-```V
+```v
 println(db.last_id() as int)
 ```
 
@@ -426,7 +426,7 @@ println(db.last_id() as int)
 
 现在，我们已经成功地将记录插入了数据库，我们将查询数据库并使用`select`语句验证记录。以下语法显示如何使用V的ORM编写select查询：
 
-```V
+```v
 ROWS_VAR := sql db {
 
     select from STRUCT_NAME
@@ -436,7 +436,7 @@ ROWS_VAR := sql db {
 
 在前面的语法中，选择操作返回与结构类型相对应的数组。我们将使用V的ORM在`Notes`表格上执行`select`操作，如下所示：
 
-```V
+```v
 all_notes := sql db {
 
     select from Note
@@ -454,7 +454,7 @@ SELECT `id`, `detail`, `status` FROM `Notes` ORDER BY `id` ASC;
 
 现在，让我们使用以下代码打印all_notes变量及其类型：
 
-```V
+```v
 println(all_notes)
 
 println('Type of all_notes is : ${typeof(all_notes).name}')
@@ -490,7 +490,7 @@ Type of all_notes is : []Note
 
 在前面的代码中，我们学习到，使用ORM默认情况下，结果按`id`的升序排列，即`Notes`表的主键列。如果我们希望结果在`id`列上按降序排列，则必须编写以下代码：
 
-```V
+```v
 notes_sorted := sql db {
 
     select from Note order by id desc
@@ -510,7 +510,7 @@ SELECT `id`, `detail`, `status` FROM `Notes` ORDER BY `id` DESC;
 
 `limit`子句指定要作为查询执行结果返回的记录数。您可以将`limit`与`order by`或`where`子句一起使用。我们将在下一节中学习`where`子句。假设您想要检索最后一个插入`Notes`表格的记录。为此，我们可以使用以下代码：
 
-```V
+```v
 notes_limited := sql db {
 
     select from Note order by id desc limit 1
@@ -529,7 +529,7 @@ SELECT `id`, `detail`, `status` FROM `Notes` ORDER BY `id` DESC LIMIT ?1;
 
 现在，让我们使用以下代码打印`notes_limited`的值和类型：
 
-```V
+```v
 println(notes_limited)
 
 println('Type returned by select when limit is 1: 
@@ -558,7 +558,7 @@ Type returned by select when limit is 1:  Note
 
 `where`子句用于基于条件语句过滤记录数量。我们将使用`select`语句，连同`where`子句，后跟条件语句。这些条件用于过滤与某些列值匹配的记录。以下代码显示使用>关系运算符根据`id`过滤选择的行：
 
-```V
+```v
 notes_latest := sql db {
 
     select from Note where id > 1
@@ -575,7 +575,7 @@ WHERE `id` > ?1 ORDER BY `id` ASC;
 
 在这里，由ORM生成的SQL根据`id > 1`条件过滤记录。如果我们打印`notes_latest`，我们将看到以下输出：
 
-```V
+```v
 [Note{
 
     id: 2
@@ -598,7 +598,7 @@ WHERE `id` > ?1 ORDER BY `id` ASC;
 
 要更新Notes表格中的任何记录，我们可以使用`update`。使用V的ORM，以下代码将`status`设置为`true`，以用于`id`为2的`Notes`表格：
 
-```V
+```v
 sql db {
 
     update Note set status = true where id == 2
@@ -614,7 +614,7 @@ UPDATE `Notes` SET `status` = ?1 WHERE `id` = ?2;
 
 要查看更新后的记录，我们可以进行以下查询：
 
-```V
+```v
 notes_updated := sql db {
 
     select from Note where id == 2
@@ -626,7 +626,7 @@ println(notes_updated)
 
 前面的代码将生成以下输出，我们可以看到状态为`id`为2的`Note`已设置为`true`：
 
-```V
+```v
 Note{
 
     id: 2
@@ -644,7 +644,7 @@ Note{
 
 删除操作从数据库中删除记录。要根据条件删除记录，我们可以使用`where`子句。以下代码显示如何删除其`id`为2的记录：
 
-```V
+```v
 sql db {
 
     delete from Note where id == 2
@@ -659,7 +659,7 @@ DELETE FROM `Notes` WHERE `id` = ?1;
 ```
 现在，让我们通过运行ORM选择查询来查看表中剩余的记录，如下所示：
 
-```V
+```v
 notes_leftover := sql db {
 
     select from Note
