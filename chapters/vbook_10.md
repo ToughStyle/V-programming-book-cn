@@ -104,7 +104,7 @@
 
 V附带了一套优雅的库，其中之一是时间库。我将使用时间模块来模拟在并发运行的函数中长时间运行的活动。要使用时间模块，您需要导入它，如下所示：
 
-```v
+```vlang
 import time
 ```
 
@@ -117,7 +117,7 @@ V中的时间模块具有大量的功能，包括使用`time.now()`表达式告�
 `sleep`函数像其名称一样，将程序的执行暂停指定的时间。时间模块的`sleep`函数只接受时间段类型的一个输入参数，包括纳秒、微秒、毫秒、秒、分钟和小时。这些单位都是`time.Duration`类型，其基础数据类型为`i64`。
 
 例如，如果您想要将程序的执行暂停半秒钟，只需编写以下语句：
-```v
+```vlang
 import time
 
 time.sleep(0.5 * time.second)
@@ -127,7 +127,7 @@ time.sleep(0.5 * time.second)
 
 时间模块还具有计时器功能。`new_stopwatch()`方法用于启动计时器。在程序的任何时刻，您都可以使用以下语法检查自启动计时器以来经过的时间：
 
-```v
+```vlang
 sw.elapsed().nanoseconds()
 ```
 
@@ -135,7 +135,7 @@ sw.elapsed().nanoseconds()
 
 此功能对于测量执行一系列指令所经过的时间非常有用。例如，以下代码演示了从程序开始时间到完成打印每个迭代变量`i`的值所经过的时间：
 
-```v
+```vlang
 module main
 
 import time
@@ -181,7 +181,7 @@ Total time took to finish: 0.0141559 seconds
 
 您可以使用以下语法创建线程数组：
 
-```v
+```vlang
 mut t1 := []thread OPTIONAL_TYPE{}
 ```
 
@@ -189,7 +189,7 @@ mut t1 := []thread OPTIONAL_TYPE{}
 
 `OPTIONAL_TYPE`表示包含在线程数组中句柄中的函数的返回类型。线程数组的所有元素必须是具有相似返回类型的函数的句柄。例如，如果正在将元素添加到线程数组中，并且每个元素都生成具有`void`类型的并发函数，则数组定义将如下所示：
 
-```v
+```vlang
 mut t1 := []thread{}
 ```
 
@@ -197,7 +197,7 @@ mut t1 := []thread{}
 
 或者，如果要创建一个线程数组，其中包含具有字符串返回类型的所有并发任务，则数组定义将如下所示：
 
-```v
+```vlang
 mut t2 := []thread string{}
 ```
 
@@ -205,7 +205,7 @@ mut t2 := []thread string{}
 
 以下代码展示了如何访问在其线程中并发运行的字符串函数返回的值：
 
-```v
+```vlang
 t2_res := t2.wait()
 ```
 
@@ -239,7 +239,7 @@ go FUNCTION_NAME_1(OPTIONAL_ARGUMENTS)
 在上述语法中，演示了在V中使用`go`关键字的用法。我们看到的是一个名为`FUNCTION_NAME_1`的简单函数，并且它在并发运行。您不需要对要并发运行的函数进行任何特殊的语法更改。
 
 使用上述语法的方法中，活动程序生成一个新线程并让函数并行运行。如果活动程序希望知道`FUNCTION_NAME_1`函数的完成状态，则可以等待线程完成执行`FUNCTION_NAME_1`。语法如下所示：
-```v
+```vlang
 h := go FUNCTION_NAME_1(OPTIONAL_ARGUMENTS)
 
 h.wait()
@@ -252,7 +252,7 @@ h.wait()
 
 在本节中，我们将编写一个简单的没有任何返回类型的函数。该函数只是向控制台打印一条消息。然后，我们将使用`go`关键字将该函数并发运行，如下所示：
 
-```v
+```vlang
 module main
 
 fn greet() {
@@ -292,7 +292,7 @@ Hello from other side!
 
 让我们更新示例程序并调用`wait()`函数，如下所示：
 
-```v
+```vlang
 module main
 
 fn greet() {
@@ -344,7 +344,7 @@ Hello from other side!
 ### 按照顺序运行多个任务
 
 本节中，我们将了解顺序执行长时间和耗时任务的影响。考虑以下代码，它简单地调用了 `hot_water`、`brush_teeth` 和 `select_clothes` 任务，在程序上以顺序方式表示：
-```v
+```vlang
 module main
 
 import time
@@ -443,7 +443,7 @@ Your pre bath morning chores took: 11.0601946 seconds
 正如我们在之前的章节中学到的那样，我们可以使用 `void` 函数创建一个并发进程数组。在本节中，我们将学习如何将并发任务添加到类型为 `[]thread` 的线程数组 `t` 中。我们将定义一个线程数组 `t`，然后向其中添加三个并发任务。在此之后，我们将等待线程数组中的所有任务完成执行。
 
 以下代码演示了同时生成这三个任务的过程：
-```v
+```vlang
 module main
 
 import time
@@ -579,7 +579,7 @@ Your pre bath morning chores took: 5.0028225 seconds
 到目前为止，我们已经产生了不返回任何值，使主线程并发运行的任务。我们访问了这些并发任务的句柄，并等待这些任务完成。如果并发任务具有返回值怎么办？在本节中，我们将更改上一节中我们运行 `void` 函数的早晨常规示例，以并发地运行返回值函数。
 
 让我们考虑以下代码：
-```v
+```vlang
 module main
 
 import time
@@ -701,7 +701,7 @@ Type of res: []string
 ### 同时生成没有输入参数的匿名函数
 
 要生成没有输入参数的匿名函数，需要在`go`关键字后定义匿名函数。由于匿名函数只需要在定义后立即启动，因此当与`go`关键字结合使用时，我们需要在匿名函数的主体之后调用`empty()`。以下语法显示如何生成匿名函数:
-```v
+```vlang
 module main
 
 fn main() {
@@ -728,7 +728,7 @@ println(x) // hi
 
 以下是示例如下：
 
-```v
+```vlang
 module main
 
 fn main() {
@@ -780,7 +780,7 @@ Type of res: []string
 
 由于只能使用结构体、映射或数组类型的变量进行数据共享，因此我们将定义一个表示基金的结构体，如下所示：
 
-```v
+```vlang
 struct Fund {
 
     name   string
@@ -799,7 +799,7 @@ mut:
 
 现在，我们定义一个名为`collect`的`Fund`结构体方法，该方法接受一个名为`amt`的输入参数，该参数表示从任何慷慨的捐赠者筹集的金额，如下所示：
 
-```v
+```vlang
 fn (shared f Fund) collect(amt f32) {
 
     lock f { // 读写锁
@@ -826,7 +826,7 @@ fn (shared f Fund) collect(amt f32) {
 
 现在，让我们继续看看基金经理(主函数)将如何从并发来源筹集资金。我们必须做的第一件事是创建一个`Fund`的共享变量，其名称是为筹集资金而募集的原因，并设置达到基金所需目标金额。这可以以以下方式在程序中表示：
 
-```v
+```vlang
 shared fund := Fund{
 
     name: '高尚目的'
@@ -837,7 +837,7 @@ shared fund := Fund{
 ```
 在这里，我们可以看到，高尚目的需要最少1000.00美元的目标金额。已定义了一种高尚的筹款基金，假设捐赠者可以捐赠100到250美元的最低和最高金额。可以在以下代码中看到：
 
-```v
+```vlang
 import rand
 
 fn donation() f32 {
@@ -850,7 +850,7 @@ fn donation() f32 {
 
 接下来，基金经理通过调用`Fund`结构体的`collect`方法不断寻求捐款并更新已筹集的总金额，如下所示：
 
-```v
+```vlang
 for {
 
     if fund.total >= fund.target {
@@ -871,7 +871,7 @@ for {
 ```
 从上面的代码片段中，用于收集捐赠的`fund.collect(amt)`进程被衍生到各个线程中。同时，基金经理(主程序)具有对基金数据的共享访问权限，因此基金经理将不断收集捐款，直到总金额`fund.total`大于或等于目标金额`fund.target`。
 将我们所看到的所有代码片段放在一起，完整的源代码如下所示：
-```v
+```vlang
 module main
 
 import rand

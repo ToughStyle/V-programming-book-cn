@@ -31,7 +31,7 @@ v run filename.v
 原始数据类型是最纯粹的数据类型，不能表示为其他形式的数据的引用或衍生。V具有许多原始数据类型，例如布尔值、字符, 字符串和数字数据类型，例如整数、无符号整数和浮点类型。
 
 在深入了解数据类型之前，我们将学习如何使用内置的`typeof()`函数确定任何变量的类型，如下所示：
-```v
+```vlang
 typeof(variable).name
 ```
 通过这个简短的原始数据类型介绍，让我们开始深入学习这些类型。我们将从学习布尔数据类型以及产生布尔结果的各种运算符开始，附上代码示例。
@@ -39,7 +39,7 @@ typeof(variable).name
 ## 布尔数据类型
 
 布尔是一种数据类型，用于表示两个可能值中的一个，即真或假。以下代码演示了声明布尔变量：
-```v
+```vlang
 completed := true
 ```
 从上述语句中，我们可以看到名为`completed`的布尔变量被赋值为`true`。请注意，语句右侧没有引号。声明布尔变量只需要将true或`false`之一分配给变量即可。
@@ -59,7 +59,7 @@ completed := true
 表4.1 - 逻辑运算符
 
 以下代码展示了在布尔变量上执行各种逻辑运算将得到一个布尔结果：
-```v
+```vlang
 module main
 
 fn main() {
@@ -136,7 +136,7 @@ false || false = false
 
 以下代码演示了在V语言中使用各种关系运算符：
 
-```v
+```vlang
 module main
 
 struct Note {
@@ -193,7 +193,7 @@ The note does not details about dairy products
 
 被分配一个整数值的变量将是默认数据类型`int`，表示32位整数：
 
-```v
+```vlang
 x := 1
 typeof(x).name // int
 ```
@@ -202,14 +202,14 @@ V支持分配带下划线`_`作为分隔符的数字。`_`只是为了可读性�
 
 请考虑以下声明：
 
-```v
+```vlang
 i := 1_000
 j := 1000
 println(i == j) // true
 ```
 V语言允许使用十六进制表示法以0x开头、二进制表示法以0b开头、八进制表示法以0o开头来声明整数变量，如以下示例代码所示：
 
-```v
+```vlang
 module main
 
 fn demo() {
@@ -278,7 +278,7 @@ Data type of var o1 with octal value: int
 ### 提升数值类型：
 
 由于数值类型构成了一个由其支持的数值数据的范围和限制所定义的特殊数据类型家族，较小的类型可以轻松地提升或转换为较大的类型。理想情况下，它们的层次结构如下图所示：
-```v
+```vlang
    i8 → i16 → int → i64
                   ↘     ↘
                     f32 → f64
@@ -290,7 +290,7 @@ Data type of var o1 with octal value: int
 以上图片来自官方 V 文档，表示了数据类型的可能提升路径，从左侧开始到右侧较大的类型，箭头表示它们适合数据类型范围的情况。
 考虑以下代码来演示类型提升流程的显示:
 
-```v
+```vlang
 module main
 fn demo() {
     ia := i8(2)
@@ -415,7 +415,7 @@ Variable fa_iba is promoted to the higher data type f32 which is carried from fa
 
 以下代码演示了算术运算符的使用：
 
-```v
+```vlang
 module main
 
 fn main() {
@@ -489,7 +489,7 @@ println(sizeof(z)) // 4
 
 下面的代码演示了各种位运算符的用法：
 
-```v
+```vlang
 module main
 
 fn main() {
@@ -541,7 +541,7 @@ Bitwise NOT: ~6 = -7
 前面语句的左侧需要是整数类型的值，后跟`<<`或`>>`，再接着需要指定在两个移位运算符之间所述方向上要左移或右移的位数。`<<`表示将位移到左侧，而`>>`表示将其移到右侧。移位语句的右侧需要是非负整数。因此，在编程时，建议在移位运算符的右侧指定无符号整数。
 
 我们考虑下面的代码，演示了对8位整数的移位操作：
-```v
+```vlang
 module main
 
 fn main() {
@@ -600,7 +600,7 @@ a is 1 byte(s)
 6
 ```
 理解了移位运算符的工作原理后，让我们看下面的例子，展示了将初始类型为`i8`且值为1的整数进行左移，并在从0到7的移位位置上对其值进行评估：
-```v
+```vlang
 module main
 
 fn main() {
@@ -643,7 +643,7 @@ Performing left shift using << Operator
 从前面的语法中，我们注意到 `:=` 符号左侧的变量名，以及由变量保存的值置于右侧。我们还注意到，变量保存的值用单引号(')括起来。V也允许您声明将值用双引号(")括起来的变量。
 
 例如，请考虑以下代码片段：
-```v
+```vlang
 h:= 'hello'
 println(h) // hello
 println(h.len) // 5
@@ -665,11 +665,11 @@ typeof(h).name // string
 ### 字符串是只读字节数组
 
 在V中，字符串是使用`struct`类型实现的，它具有两个带有`pub`关键字标记的字段`str`和`len`，其中`str`字段是具有默认值0的字节指针，`len`字段是`int`类型，表示字符串的长度。因此，在V中，字符串是只读字节数组。我们将在第8章"V中的Structs"中详细了解`struct`和`struct`字段。简而言之，在V中，字符串通常表示为只读字节数组。请考虑以下代码：
-```v
+```vlang
 fruit:= 'Orange'
 ```
 在这里，变量`fruit`被赋予`Orange`字符串，该字符串长度为6个字符。请考虑以下代码：
-```v
+```vlang
 println(typeof(fruit[0]).name) // byte
 println(fruit[0]) // 79
 ```
@@ -678,7 +678,7 @@ println(fruit[0]) // 79
 ###  字符串默认情况下是不可变的
 
 字符串在声明时默认为不可变的。这意味着一旦声明了字符串，就无法修改或更新它。让我们看以下示例：
-```v
+```vlang
 s:= 'hello' //变量s是不可变的
 s ='Hello!' //这会导致错误
 ```
@@ -689,18 +689,18 @@ s ='Hello!' //这会导致错误
 ###  声明可变字符串
 
 您可以使用`mut`关键字声明可变字符串，并使用:= 分配变量的值，如下所示：
-```v
+```vlang
 mut msg:='Hello Friend!'
 要更改可变变量的值，请使用=而不是`:=`。现在我们定义了一个可变字符串，让我们尝试用其他内容替换`msg`的值，如下所示：
 
-```v
+```vlang
 msg = 'Hope you are doing good.'
 println(msg) // Hope you are doing good.
 ```
 
 使用可变的`msg`变量，您还可以执行其他各种字符串操作，例如使用+将其与其他字符串连接起来更新`msg`变量，如下所示：
 
-```v
+```vlang
 msg = msg + " There is a surprise for you."
 println(msg) // Hope you are doing good. There is a surprise for you.
 ```
@@ -711,7 +711,7 @@ println(msg) // Hope you are doing good. There is a surprise for you.
 
 正如我们所看到的，字符串的元素可以被索引，从位置0开始；然而，程序员有时候倾向于在特定位置更新字符串中字符的值。即使它们被声明为可变的，因为字符串是只读字节数组，所以这是不允许的：
 
-```v
+```vlang
 mut greet := 'good Day'
 greet[0] = 'G' // this results in error
 ```
@@ -730,14 +730,14 @@ greet[0] = 'G' // this results in error
 
 用反引号( ` )括起来的值声明符文数据类型的变量，如下所示：
 
-```v
+```vlang
 l := `a`
 typeof(l).name // rune
 ```
 
 通过将符文转换为字符串类型，您可以执行字符串操作，例如将符文类型与字符串连接，检查字符串是否包含符文等。请考虑以下代码：
 
-```v
+```vlang
 beverage := 'café'
 s := `é` //declare rune
 beverage.count(s.str()) // 1
@@ -757,12 +757,12 @@ beverage.count(s.str()) // 1
 
 可以通过以下语法实现字符串内插：
 
-```v
+```vlang
 println('SAMPLE TEXT $primitive-data-type')
 ```
 
 前面的语法展示了如何使用 `$` 符号作为变量名的前缀来对基本数据类型进行字符串插值。考虑以下代码：
-```v
+```vlang
 a := "coding"
 
 b := "fun"
@@ -774,7 +774,7 @@ println('$a is $b')
 coding is fun
 ```
 当访问结构体字段时，建议使用 `{` 和 `}` 双大括号将它们包裹起来，并加上 `$` 前缀符号，如下所示：
-```v
+```vlang
 println('${STRUCT1.FIELD1} is ${STRUCT1.FIELD_2}')
 ```
 上面的代码展示了如何使用字符串插值的方法来访问结构体字段。我们将在第8章"V中的结构体"中学习更多关于结构体和访问结构体字段的知识。
@@ -790,7 +790,7 @@ println('${STRUCT1.FIELD1} is ${STRUCT1.FIELD_2}')
 It's my Daughter's birthday .
 ```
 在这个句子中，单引号( ' )作为两个单词 `It's` 和 `Daughter's` 的一部分出现。为了声明这样的字符串，我们需要使用反斜杠 `\` ，一个向后的斜杠符号来转义引号，如下所示：
-```v
+```vlang
 sen := 'It\'s my Daughter\'s birthday!'
 
 println(sen)
@@ -804,7 +804,7 @@ It's my Daughter's birthday!
 ### 声明原始字符串
 
 有时，字符串包含一个反斜杠符号( \ )作为分配给变量的文本的一部分。如果没有转义，`\` 将不会出现，并且有时会在反斜杠旁边出现 `n` 和 `t` 等字符时导致特殊行为。这意味着 `\n` 和 `\`t 具有特殊含义，分别表示新行和制表符空间。在这种情况下，您可以添加额外的反斜杠 `\\` ，或在单引号之前用小写字母 `r` 指示它为原始文本。以下代码将展示如何声明原始字符串以及声明和未声明原始字符串输出的差异：
-```v
+```vlang
 I :='hi, \\how are you?'
 
 println(i)
@@ -814,7 +814,7 @@ println(i)
 hi, how are you?
 ```
 注意到输出结果中缺少 `\` ，为了防止这种情况的发生，我们可以将其声明为原始字符串，如下所示：
-```v
+```vlang
 I := r'hi, \how are you?'
 
 println(i)
@@ -828,7 +828,7 @@ hi, \how are you/?
 ### 连接字符串
 
 连接是将两个字符串合并在一起的过程。使用V允许您使用 `+` 运算符连接字符串：
-```v
+```vlang
 a := "con"
 
 b := "cat"
@@ -836,7 +836,7 @@ b := "cat"
 println(a + b) // concat
 ```
 使用 + 进行字符串连接需要将要连接的文字文本直接形成字符串数据类型的字面量。以下类型的连接会导致错误：
-```v
+```vlang
 i := 1
 
 j := "man army"
@@ -848,7 +848,7 @@ println(i + j) // i 是 int 类型，j 是 string 类型，会抛出错误
 infix expr: cannot use string (right expression) as int .
 ```
 但是，您可以使用字符串插值技术实现不同数据类型的变量连接，从而生成字符串字面量。代码将有效地编写如下：
-```v
+```vlang
 i := 1
 
 j := "man army"
@@ -866,7 +866,7 @@ println('${i} ${j}')
 可以通过 `substr` 函数来操作一个字符串，从中提取出一部分。`substr` 函数接受两个输入参数。第一个参数是 `int` 类型，表示字符串中的起始位置。第二个参数也是 `int` 类型，表示结束位置，但不包括它本身。
 
 考虑以下代码片段：
-```v
+```vlang
 a :='Came'
 
 b := a.substr(0,3)
@@ -883,7 +883,7 @@ println(b) // Cam
 
 要对字符串进行分割，我们使用`split`函数，它接受一个字符串类型的单个输入参数，该参数表示要使用的分隔符值。分割的结果将返回一个字符串数组，每个元素都是根据提供的分隔符进行拆分操作的结果:
 
-```v
+```vlang
 sp :='The tiny tiger tied the tie tighter to its tai'
 
 res := sp.split(' ') // 使用空格作为分隔符进行分割
@@ -900,7 +900,7 @@ println(res) // ['Th','tin','tige','tie','th','ti','tighte','t','it','tai']
 
 考虑以下代码：
 
-```v
+```vlang
 doge_moon := "` `+` `=` `"
 
 doge_moon_runes := doge_moon.runes()
@@ -916,7 +916,7 @@ println(doge_moon_runes)
 
 从输出中可以看出，数组的每个元素都用反引号(\`)括起来，因此它表示结果数组的类型是`[]rune`。我们还可以使用以下代码检查`doge_moon_runes`的类型：
 
-```v
+```vlang
 println(typeof(doge_moon_runes).name) // []rune
 ```
 
@@ -926,7 +926,7 @@ println(typeof(doge_moon_runes).name) // []rune
 
 考虑以下示例：
 
-```v
+```vlang
 sp := 'The tiny tiger tied the tie tighter to its tail'
 
 println(sp.count('t'))        // 10
@@ -948,7 +948,7 @@ println(sp.count('-'))         // 0
 
 以下代码演示了`contains`的用法：
 
-```v
+```vlang
 module main
 
 fn main() {
@@ -978,7 +978,7 @@ monday contains mon
 
 现在，让我们略微更改代码，并将变量的值更新为`Monday`，其中大写字母`M`，而不是`monday`，并尝试运行以下代码：
 
-```v
+```vlang
 module main
 
 fn main() {

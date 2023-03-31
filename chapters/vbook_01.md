@@ -93,13 +93,13 @@ V需要类似或更少的LOC来模拟用Go编写的功能。它只有一种标�
 
 编写简单程序只需要以下三行代码：
 
-```V
+```vlang
 fn main() {
     println('Hello, from V lang!')
 }
 ```
 你甚至不需要`fn main()` `{`和闭合括号`}`。只需将以下行放在名为`hello.v`的文件中，并使用`v run hello.v`命令运行它：
-```v
+```vlang
 println('Hello, from V lang!')
 ```
 与V相比，我们可以在一行中编写简单的程序，而在格式化后编写的类似程序需要至少7个LOC，如下所示：
@@ -154,7 +154,7 @@ V具有非常强大的并发框架。对于在高端计算设备上运行的应�
 ### 易于交叉编译
 
 V允许您使用其跨平台编译功能生成跨平台二进制文件。使用此功能，您可以从unix操作系统生成针对unix操作系统变体以及Windows或macOS的应用程序可执行文件。从unix操作系统，例如Ubuntu，创建名为hello.v的文件，并将以下代码添加到其中：
-```V
+```vlang
 module main
 
 fn main() {

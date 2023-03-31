@@ -23,7 +23,7 @@
 如果需要，函数可以调用另一个函数。在某些情况下，函数可以调用自身执行递归操作。
 
 V 简化了与函数的处理。在 V 中，函数是使用 `fn` 关键字创建的。在 V 中创建函数的典型语法如下所示：
-```v
+```vlang
 ACCESS-MODIFIER fn FUNCTION_NAME(ARGUMENT1_NAME ARGUMENT1_DATATYPE, ARGUMENT2_NAME ARGUMENT2_DATA){
 
     OPERATIONS
@@ -59,7 +59,7 @@ ACCESS-MODIFIER fn FUNCTION_NAME(ARGUMENT1_NAME ARGUMENT1_DATATYPE, ARGUMENT2_NA
 - 编写主函数的模块或文件由 `module main` 语句指定。
 
 以下代码演示了主函数：
-```v
+```vlang
 module main
 
 fn main() {
@@ -76,7 +76,7 @@ fn main() {
 
 简而言之，基本函数只是具有给定函数名称的包含逻辑相关语句的函数体。它们还可以接受输入参数，这些参数可能被认为是执行操作所必需的，并且如果函数返回任何值作为操作结果，则可以指定返回类型。V 中的函数提供了许多功能，我们将在本章的后续部分进行介绍。但是，首先让我们从一个简单的函数开始。
 下面的代码展示了一个简单的函数`greet`:
-```v
+```vlang
 fn greet(msg string) {
 
     println(msg)
@@ -90,7 +90,7 @@ fn greet(msg string) {
 ### 匿名函数
 
 匿名函数是没有名称的函数块，可以在另一个函数内创建。匿名函数可以随时声明并分配给变量，以便通过调用该变量来调用它们。匿名函数的作用域在声明它们的函数范围内。让我们从以下代码开始更好地理解匿名函数：
-```v
+```vlang
 module main
 
 fn main() {
@@ -124,7 +124,7 @@ V 允许您定义接受或返回其他函数的函数。这些函数类型通常
 ### 接受其他函数作为输入参数的高阶函数
 
 在本节中，我们将通过详细的演示理解接受另一个函数作为输入参数的高阶函数的概念。让我们定义三个返回string类型消息的函数，如下所示：
-```v
+```vlang
 fn greet_morning() string {
 
     return 'Good Morning'
@@ -144,7 +144,7 @@ fn greet_evening() string {
 }
 ```
 请注意，这三个函数是基本函数，每个函数都返回表示不同问候语的字符串：Good Morning，Good Afternoon和Good Evening。现在，我们将创建一个高阶函数，它接受两个输入参数。其中一个输入参数是一个函数类型，而另一个是字符串类型：
-```v
+```vlang
 fn greet(f fn () string, name string) string {
 
         return '$f(), $name!'
@@ -153,7 +153,7 @@ fn greet(f fn () string, name string) string {
 ```
 这里，`greet`函数是一个高阶函数，接受返回`string`类型的任何函数。为了使`greet`函数接受一个函数，它必须遵循`greet`函数方法签名指定的标准。因此，我们来看一下`f fn() string`输入参数。请注意，名称为f的输入参数必须是一个函数，因为它由`fn() string`类型的函数识别出来。在`fn() string`表达式中，空括号()指定传递的函数必须是不带任何输入参数的函数，并且`fn()`中的类型指示该函数必须返回`string`类型的值。
 由于 `greet_morning`、`greet_noon` 和 `greet_evening` 符合作为 `greet` 函数的第一个输入参数提供的要求，让我们尝试通过以下方式传递它们：
-```v
+```vlang
 mut res := greet(greet_morning, 'Pavan')
 
 println(res)
@@ -167,7 +167,7 @@ println(res)
 作为高阶函数的参数传递的函数的签名必须匹配高阶函数的输入参数中指定的定义。此外，请注意，当我们将函数作为参数传递时，我们只是指定函数的名称，没有任何括号。作为输入参数传递的函数所需的任何参数都必须由高阶函数提供。因此，在这种情况下，高阶 `greet` 函数必须负责向其接受的函数提供参数。
 
 除了将预定义的函数作为输入参数传递给高阶函数之外，您还可以传递匿名函数。让我们来看一下如何将匿名函数作为输入参数传递给高阶函数的以下代码：
-```v
+```vlang
 res1 := greet(fn () string {
 
     return 'New year greetings to you'
@@ -179,7 +179,7 @@ println(res)
 在上面的代码中，我们将匿名函数作为输入参数传递给高阶函数。在这里，匿名函数与高阶 `greet` 函数中定义的 `f fn() string` 签名匹配。
 
 以下是该示例的完整源代码和输出：
-```v
+```vlang
 module main
 
 fn greet_morning() string {
@@ -250,7 +250,7 @@ New year greetings to you, Sahithi!
 为了演示，我们试图创建一个函数，通过接受表示操作的输入参数返回所需类型的操作。
 
 让我们定义一个名为 `Operation` 的枚举。下面定义的 `Operation` 枚举将其字段表示为我们要执行的操作列表：
-```v
+```vlang
 enum Operation {
 
     add
@@ -262,7 +262,7 @@ enum Operation {
 }
 ```
 接下来，我们将定义三个函数：`adder`、`subtractor`和`multiplier`，它们分别执行其对应函数名称的逻辑，如下所示：
-```v
+```vlang
 fn adder(i int, j int) int {
 
     return i + j
@@ -282,7 +282,7 @@ fn multiplier(i int, j int) int {
 }
 ```
 现在，我们将定义一个接受 `Operation` 枚举的高阶函数。此函数根据 `match {}` 块处理的匹配操作之一返回 `adder`、`subtractor` 和 `multiplier` 中的一个函数，如下所示：
-```v
+```vlang
 fn fetch(op Operation) fn (int, int) int {
 
     return match op {
@@ -320,7 +320,7 @@ fn fetch(op Operation) fn (int, int) int {
 - 返回的函数必须返回 int 类型。
 
 因此，在上面定义的 `adder`、`subtractor` 和 `multiplier` 函数中，指定了与上述高阶 `fn(int, int) int` 函数类型匹配的返回类型。现在，我们将声明两个整数变量并通过查询高阶 `fetch` 函数来执行各种操作，以返回通过传递 `Operation` 枚举的字段的函数：
-```v
+```vlang
 i := 2
 
 j := 5
@@ -336,7 +336,7 @@ println('sum of $i and $j: $res')
 上面的代码使用传递给 `Operation` 枚举的 `add` 字段作为输入参数调用高阶 `fetch` 函数。在这种情况下 `fetch(.add)` 将返回 `adder` 函数，然后将其分配给变量 `f`。由于我们以变量形式访问 `adder` 函数，因此我们将通过将 `i` 和 `j` 整数作为输入参数传递到存储在 `f` 变量中的 `adder` 函数来执行 `adder` 函数，它们匹配 `adder` 函数签名中定义的输入类型。
 
 类似地，我们可以通过将 `Operation` 枚举的 `sub` 和 `mul` 字段作为输入参数传递给 `fetch` 函数来获取相应的减法和乘法函数来执行减法和乘法。以下是调用所有高阶函数的主函数：
-```v
+```vlang
 fn main() {
 
     i, j := 2, 5
@@ -404,7 +404,7 @@ product of 2 and 5: 10
 - 函数可以返回值或仅执行操作
 
 在V中，默认情况下，函数是纯函数。这意味着返回值只是其参数的函数，它们的评估没有副作用(除了I/O)。这意味着函数只负责它们所要做的事情，不承担其他责任。为了证明这一点，请考虑以下的`sum`函数：
-```v
+```vlang
 fn sum(a int, b int) int {
 
     return a + b
@@ -414,7 +414,7 @@ fn sum(a int, b int) int {
 在上面的代码中，`sum`函数会将作为输入参数提供给它的2个数字相加，然后可以将数字5轻松地替换为函数调用`sum(2,3)`. 因此，`sum`函数只执行两个数字的相加操作并返回该值，而且不承担其他责任。这表明，对于相同的输入，纯函数总是提供一致的结果，无论我们调用它多少次。
 
 如果要让函数返回操作的结果，则需要在方法签名中指定与方法返回的值匹配的返回类型。函数使用`return`关键字将值传递给它们的调用者：
-```v
+```vlang
 fn say_hello() string {
 
     return 'Hello!'
@@ -428,7 +428,7 @@ res := say_hello()
 println(res) // prints: Hello!
 ```
 在上面的代码中，命名为`say_hello`的函数返回一个在`return`关键字之后指定为字符串数据类型的`Hello!`字符串，并与方法签名中指定的返回类型匹配。与上面的例子相反，有些方法不必要求调用者确认它们并可以执行操作，如I/O操作(如打印到控制台，文件操作，从数据库表中插入、更新或删除记录或设置环境变量)等。例如，考虑以下方法：
-```v
+```vlang
 fn console_greeter() {
 
     println('Hello!')
@@ -443,7 +443,7 @@ console_greeter() // prints: Hello!
 
 函数可以传递输入参数，这些参数可能帮助您完成底层操作。
 在 V 中，方法名后的圆括号内需要传递输入参数。一个输入参数由其名称后跟输入参数的数据类型表示。如果有多个输入参数，则必须使用逗号分隔它们，如下所示：
-```v
+```vlang
 fn add(a int, b int) int {
 
     return a + b
@@ -459,7 +459,7 @@ println(res) // 输出：6
 ### 函数可以返回多个值
 
 V 允许您以多个返回值的形式提供在函数内执行的操作结果。语法使用`return`关键字，其后的值用逗号分隔。此外，在输入参数之后的方法签名中指定返回类型是必要的。多个返回类型需要用圆括号括起来，其中只有数据类型按其返回的顺序用逗号分隔：
-```v
+```vlang
 fn greet_and_message_length(name string) (string, int) {
 
     mut greeting := 'Hello, ' + name + '!'
@@ -477,7 +477,7 @@ println(j)
 在上面的代码中，`greet_and_message_length`函数返回不同数据类型的多个值。它接受字符串数据类型的名称输入参数。然后，它执行字符串连接，最后返回字符串数据类型的问候语及其长度，该长度是int数据类型。这遵循`(string，int)`方法签名中提到的序列顺序。
 
 调用者通过逗号分隔的变量接收值，如下所示：
-```v
+```vlang
 i, j := greet_and_message_length('Navule')
 ```
 这是输出结果：
@@ -491,7 +491,7 @@ Hello, Navule!
 如果您只对一个或几个函数返回值感兴趣，则可以使用下划线来忽略相应值的初始化。
 
 例如，以下代码显示调用者仅有兴趣捕获问候信息，而不关心消息长度，因此在返回消息长度的位置上使用`_`跳过将其初始化：
-```v
+```vlang
 i，_:= greet_and_message_length('Navule')
 ```
 此忽略返回值的技术也可以应用于返回单个值的方法。
@@ -501,7 +501,7 @@ i，_:= greet_and_message_length('Navule')
 函数可以调用其可以访问的其他函数。访问包括同一模块的函数或导入模块的公共函数。V 中的模块允许您将相关功能组合在一起，因此帮助您模块化代码。关于模块的更多内容将在第9章模块中学习。
 
 在以下示例中，`greet`函数被`welcome`函数调用，并添加了欢迎消息的结果：
-```v
+```vlang
 fn greet(p string) string {
 
     return 'Hello, $p!'
@@ -533,7 +533,7 @@ Hello, Visitor! Welcome to the Mall!
 有时，您需要修改变量，例如基本类型、数组或结构体。您已经了解到这样一个变量的修改程序可以将其作为可重用代码块移动到函数中。通常，您会创建一个接受要修改的变量作为参数的函数。在函数内部，您将它分配给新的可变变量，然后执行更新。最后，您返回已更新的变量，并标记函数的方法签名为正在更新的变量的返回类型。
 为了演示变量修改的情况，让我们了解以下用例。假设您想通过指定的数字递增整数数组的所有元素；通常，您编写一个函数来为新函数接受数组和递增因子作为两个参数。让我们称之为`increment_array_items`。由于该函数还必须返回数组，因此我们需要在方法签名中指定`[]int`，如下所示：
 
-```v
+```vlang
 fn increment_array_items(arr []int, inc int) []int {
 
     mut tmp := arr.clone()
@@ -575,7 +575,7 @@ res: [105, 106]
 
 让我们修改`increment_array_items`以反映更新作为可变函数参数传递给它的变量的功能：
 
-```v
+```vlang
 fn increment_array_items(mut arr []int, inc int) {
 
     for mut i in arr {
@@ -607,7 +607,7 @@ a: [105, 106]
 
 将以下V脚本复制并放置到名为`script_functions.vsh`的文件中：
 
-```v
+```vlang
 #!/usr/local/bin/v run
 
 cnt := 2
@@ -641,7 +641,7 @@ error: function declarations in script mode should be before all script statemen
 ```
 请注意，终端将打印错误。为了使vsh脚本起作用，请更新它，以便函数出现在脚本文件中的其他表达式或变量声明之前，如下所示：
 
-```v
+```vlang
 #!/usr/local/bin/v run
 
 fn log(msg string) {
@@ -681,7 +681,7 @@ iteration 1
                 mymod.v
 
 从一个空目录开始，让我们创建一个名为main.v的文件，其中包含以下代码：
-```v
+```vlang
 // file: main.v
 
 module main
@@ -699,7 +699,7 @@ fn main() {
 在上面的代码中，我们导入了一个名为`mymod`的模块，我们将进一步开发该模块。在`main`方法中，我们正在将值设置为我们将在`mymod`中定义的字符串数据类型的名为`msg`的变量，作为全局变量。
 
 在V中创建全局变量的语法如下：
-```v
+```vlang
 __global(
 
 <variable_name> <data_type>
@@ -707,7 +707,7 @@ __global(
 )
 ```
 现在，让我们创建一个名为`mymod`的模块，并添加一些代码。为此，我们将创建一个名为`mymod`的目录，并在该目录中使用以下代码创建一个名为`mymod.v`的文件：
-```v
+```vlang
 // file: mymod/mymod.v
 
 module mymod
@@ -733,7 +733,7 @@ V不允许您声明函数并将其参数设置为默认值。这表明V不支持
 ### 函数可以有可选的返回类型
 
 函数也可以声明可选的返回类型。这是通过在函数签名中指定的返回类型的前缀添加?符号来实现的，如下例所示。对于具有可选返回类型的函数，除实际返回类型之外的可选类型将为`none`。具有可选返回类型的函数的调用者必须指定或`{}`块，如下所示：
-```v
+```vlang
 module main
 
 fn is_teen(age int) ?string {
@@ -770,7 +770,7 @@ invalid age provided
 ```
 你可以使用可选返回类型的函数来指定错误而不是`none`，例如以下示例：
 
-```v
+```vlang
 module main
 
 fn is_teen(age int) ?string {
@@ -823,7 +823,7 @@ invalid age provided
 请注意，演示V项目有两个v文件，调用`mod1`模块中定义的各种函数。
 
 下面看一下`mod1.v`文件：
-```v
+```vlang
 // file: mod1/mod1.v
 
 module mod1
@@ -851,7 +851,7 @@ pub fn greet_and_wish() string {
 `mod1.v`文件定义了三个函数，分别为`greet1`、`greet2`和`greet_and_wish`。在这三个函数中，只有`greet2`和`greet_and_wish`被标记为`pub`访问修饰符。 `pub`访问修饰符使函数可在父模块中使用，而根据`greet1`函数的定义，默认情况下它是私有的。
 
 接下来看一下public_function_demo1.v文件：
-```v
+```vlang
 // file: public_function_demo1.v
 
 import mod1
@@ -871,7 +871,7 @@ v run public_function_demo1.v
 error: function `mod1.greet1` is private
 ```
 然后，看一下`public_function_demo2.v`文件的内容：
-```v
+```vlang
 // file: public_function_demo2.v
 
 import mod1
@@ -890,7 +890,7 @@ v run public_function_demo2.v
 Hello from greet2!
 ```
 此外，让我们再看一下`public_function_demo3.v`文件的内容：
-```v
+```vlang
 // file: public_function_demo3.v
 
 import mod1
@@ -902,7 +902,7 @@ println(g)
 在`public_function_demo3.v`文件中，我们导入了名为`mod1`的模块，并调用了作为`mod1`公共函数暴露出来的`greet_and_wish`函数。接下来，我们尝试将`greet_and_wish`函数返回的值存储在一个变量中，然后将该值打印到控制台。
 
 在执行该文件之前，让我们再看一下`greet_and_wish`函数的定义：
-```v
+```vlang
 // file: mod1/mod1.v
 
 /*full code of this file omitted for brevity*/
@@ -932,7 +932,7 @@ Hello from greet1, Have a nice day!
 V允许你在`defer {}`块中封装延迟执行流程。使用`defer`关键字创建`defer`块，并在其后紧跟花括号包裹功能。不同类型的函数执行方式不同。例如，如果函数返回特定类型的值，则在评估返回语句之后执行`defer`块。另外，如果函数没有返回值，则在流程从定义它的函数离开之前执行`defer`块。
 
 打个比方，以下是`void_func_defer`函数的定义：
-```v
+```vlang
 module main
 
 fn void_func_defer() {
@@ -972,11 +972,11 @@ Hi from defer block
 ### 函数可以用作数组或映射的元素
 
 V允许你定义一个包含多个具有相同签名的函数的数组或映射。让我们重用我们在`Higher-order functions that return other functions`中定义的`adder`、`subtractor`和`multiplier`函数。由于这三个函数具有相同的签名，所以我们可以将这三个函数的数组定义如下：
-```v
+```vlang
 funcs := [adder, subtractor, multiplier]
 ```
 当将函数添加为数组元素时，无需指定参数或返回类型。参数将在我们访问`funcs`数组元素时传递，如以下代码中所示。现在，我们可以遍历这个数组，该数组执行与这些函数底层的数学运算相关的操作，如以下示例：
-```v
+```vlang
 i, j := 2, 5
 
 for f in funcs {
@@ -998,7 +998,7 @@ for f in funcs {
 在上面的代码中，对于名为`funcs`的数组变量的每个元素进行迭代时，`f`迭代变量代表三个函数中的一个。在每次迭代中，我们将`i`和`j`整数变量传递给`f`迭代变量，该变量代表我们之前定义的函数。
 
 上述输出的问题在于它不直观。我们无法确定对i和j整数变量执行了什么操作。因此，让我们通过定义一个包含这些函数的映射来使其更加直观。我们将定义一个映射，使键表示函数所做操作的一个单词描述，而值则是实际的函数本身：
-```v
+```vlang
 d := map{
 
     'sum':        adder
@@ -1012,7 +1012,7 @@ d := map{
 在将函数作为元素添加到映射中时，不必指定参数或返回类型。
 
 我们已声明一个`d`映射变量，其中键-值对表示一个单词描述，性别名作为键，函数名称作为值：
-```v
+```vlang
 for key, val in d {
 
     res := val(i, j)
@@ -1023,7 +1023,7 @@ for key, val in d {
 ```
 以下是演示如何将函数用作数组和映射元素的完整源代码：
 
-```v
+```vlang
 module main
 
 fn adder(i int, j int) int {
