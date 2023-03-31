@@ -34,7 +34,7 @@ assert boolean_expression
 
 `assert` 表达式也可用于普通函数中。当放置在 `assert` 关键字旁边的表达式评估为 `true` 时，程序将继续执行。如果表达式评估为 `false`，则程序将停止，并将错误报告给 `stderr`。下面是一个演示如何在普通函数中使用 `assert` 的代码：
 
-```
+```V
 module main
 
 fn main() {
@@ -109,7 +109,7 @@ demo_test.v:1:1: error: a _test.v file should have *at least* one `test_` functi
 Details: The name of a test function in V, should start with `test_`.
 ```
 测试函数应该不带任何参数，没有返回类型。示例：
-```
+```V
 fn test_xyz(){ assert 2 + 2 == 4 }
 ```
 在我们开始编写测试之前，先比较一下整数值的关系运算符，让我们看一下测试函数的一些属性：
@@ -119,7 +119,7 @@ fn test_xyz(){ assert 2 + 2 == 4 }
 - 测试函数应始终是 `void` 函数。这意味着它不能具有返回类型，或者可以标记为返回可选类型。
 
 在了解测试函数的基本属性后，我们将在刚创建的测试文件中编写第一个测试。从您选择的编辑器中打开 `demo_test.v` 文件，并添加以下代码，使 `demo_test.v` 文件如下所示：
-```
+```V
 fn test_first() {
 
     assert 2 != 2
@@ -149,7 +149,7 @@ demo_test.v:2: ✗ fn test_first
 因此，我们的测试在断言 `2！= 2` 的表达式上失败。在上述输出中，我们注意到 `stderr` 显示了 `demo_test.v:2: ✗ fn test_first` 表示测试失败。另外，使用 > 符号指出了测试未能进行断言的行。下一行还显示了表达式保留的值以及标签 `Left value` 和 `Right value`。
 
 由于此测试失败，让我们通过将布尔表达式更改为评估为 `true` 来使该测试通过，如下所示：
-```
+```V
 fn test_first() {
 
     assert 2 == 2
@@ -178,7 +178,7 @@ V 允许以测试套件函数的形式编写测试执行前后的例程，分别
 ### 演示使用 `testsuite` 函数
 
 在本节中，我们将以一些示例代码展示 `testsuite` 函数的用法。考虑以下代码，它演示了 `testsuite` 函数的用法：
-```
+```V
 import os
 
 fn testsuite_begin() {
@@ -249,7 +249,7 @@ Finished executing all tests
 ## 为具有可选返回类型的函数编写测试
 
 我们已经学习到测试函数不应该指定返回类型的规则。但是我们也知道，当测试逻辑涉及到有可选返回类型的函数时，可以在测试函数属性上标记符号 "?"。为了证明这一点，考虑以下 greet 函数：
-```
+```V
 fn greet(name string) ?string {
 
      if name != '' {
@@ -263,7 +263,7 @@ fn greet(name string) ?string {
 }
 ```
 greet 函数返回一个 ?string 类型。这意味着，只有在提供非空名称作为输入参数时，greet 才会返回字符串值。如果名称是空字符串，它将返回带有消息"name not provided"的错误。以下代码显示了当提供具有非空字符串的名称参数时的测试用例：
-```
+```V
 fn test_greet_given_a_name() {
 
      exp := 'Hello Pavan!'
@@ -275,7 +275,7 @@ fn test_greet_given_a_name() {
 在上述代码中，我们不会看到 assert 的任何失败，因为它使用关系运算符"=="满足左值和右值进行比较的表达式。从逻辑上讲，表达式 greet('Pavan') or {err.msg} 的左值将求值为 "Hello Pavan!"，这与期望值相同。
 
 但是，考虑当函数提供空字符串时的情况。有两种方法可以编写这种场景的测试。第一种方法是让被测试的函数(在此示例中为 greet)传播错误，从而导致测试失败。所以，为了实现这一点，让我们创建一个名为 test_greet_propagates_error 的测试函数，如下所示：
-```
+```V
 fn test_greet_propagates_error() ? {
 
      greet('') ?
@@ -289,7 +289,7 @@ demo_test.v:14: ✗ fn test_greet_propagates_error failed propagation with error
    14 |            greet('') ?
 ```
 如果您想要清理测试并捕获由 greet 函数返回的确切错误消息，我们可以编写以下测试：
-```
+```V
 fn test_greet_when_empty() {
 
     exp := 'name not provided'
@@ -301,7 +301,7 @@ fn test_greet_when_empty() {
 在上述代码中，我们没有标记测试函数的返回类型"？"。相反，我们断言使用空字符串值返回的错误消息与 exp 变量持有的预期值相同。
 
 以下是在本节中学到的所有代码的完整工作代码：
-```
+```V
 fn greet(name string) ?string {
 
     if name != '' {
@@ -347,7 +347,7 @@ demo_test.v:14: ✗ fn test_greet_propagates_error failed propagation with error
 ### 为简单程序编写测试
 
 让我们从为V语言中的一个简单问候应用程序编写测试开始。在这种情况下，我们只有一个模块，即主模块。主模块将具有一个名为 `greet.v` 的文件，其中包含一个私有函数 `greet` 和主函数，该函数打印由`greet`函数返回的响应：
-```
+```V
 module main
 
 fn greet(name string) string {
@@ -365,7 +365,7 @@ fn main() {
 }
 ```
 接下来，我们将在包含`greet.v`的目录中添加一个名为`greet_test.v`的`_test.v`文件。然后我们添加测试，如下所示：
-```
+```V
 module main
 
 fn test_greet() {
@@ -422,7 +422,7 @@ Error: the main function cannot be called in the program。
 
 正如前面提到的，我们向第9章的V语言代码进行了引用，以简化适合此主题的代码，我们将进行轻微修改。第一个更改是将包含在`file1.v`中的`mod1`的`hello()`函数更改为返回字符串而不仅仅是将消息打印到控制台。这将有助于编写一个测试并断言返回值。因此，`hello`函数将如下所示：
 
-```
+```V
 // file: mod1/file1.v
 
 module mod1
@@ -434,7 +434,7 @@ pub fn hello() string {
 }
 ```
 第二个更改是将主函数更改为将从`mod1.hello`函数返回的返回值打印到控制台。因此，位于`modulebasics.v`中的`main`函数将更新如下：
-```
+```V
 module main
 
 import mod1
@@ -448,7 +448,7 @@ fn main() {
 }
 ```
 现在，我们将为`mod1`的`hello`函数添加测试。首先要做的是在`mod1`目录内的`mod1`模块中添加测试。因此，我们将在`mod1`目录中创建一个名为`mod1_test.v`的文件，并在其中实现以下带有`AAA`模式的测试：
-```
+```V
 // file: mod1/mod1_test.v
 
 module mod1
@@ -491,7 +491,7 @@ v test mod1
 ### 编写测试来测试子模块的成员函数
 
 现在，我们将进一步添加项目级别的测试，其中我们将访问包含在模块内的函数。为此，我们将在`modulebasics`项目的根目录中添加一个名为`main_test.v`的文件。然后，我们添加一个测试来操作`mod1`模块的`hello`函数：
-```
+```V
 // file: main_test.v
 
 module main
