@@ -934,7 +934,7 @@ println('${i} ${j}')
 考虑以下代码片段：
 
 ```v
-a :='Came'
+a := 'Came'
 
 b := a.substr(0,3)
 

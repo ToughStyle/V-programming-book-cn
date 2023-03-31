@@ -16,4 +16,4 @@ GitBook本书籍链接: https://toughstyle.gitbook.io/v-programming-book-cn/
 
 ### Github Languages Star History Comparison
 
-[![Languages Star History Chart](https://api.star-history.com/svg?repos=goplus/gop,vlang/v,carbon-language/carbon-lang,JuliaLang/julia,JetBrains/kotlin,rust-lang/rust,golang/go,ziglang/zig,nim-lang/nim&type=Date)](https://star-history.com/#goplus/gop&vlang/v&carbon-language/carbon-lang&JuliaLang/julia&JetBrains/kotlin&rust-lang/rust&golang/go&ziglang/zig&nim-lang/nim&Date)
+[![Languages Star History Chart](https://api.star-history.com/svg?repos=goplus/gop,vlang/v,nim-lang/nim,JuliaLang/julia,JetBrains/kotlin,rust-lang/rust,golang/go,ziglang/zig,carbon-language/carbon-lang&type=Date)](https://star-history.com/#goplus/gop&vlang/v&nim-lang/nim&JuliaLang/julia&JetBrains/kotlin&rust-lang/rust&golang/go&ziglang/zig&carbon-language/carbon-lang&Date)
