@@ -2,7 +2,9 @@
 ## 中文教程: 入门V语言编程
 *--从基本变量和模块到高级并发的端到端指南*
 
-GitBook书籍链接: https://toughstyle.gitbook.io/v-programming-book-cn/
+GitBook本书籍链接: https://toughstyle.gitbook.io/v-programming-book-cn/
+
+另一本优秀的**V语言编程进阶**电子书: https://lydiandylin.gitbook.io/vlang
 
 ### 本项目地址: https://github.com/ToughStyle/V-programming-book-cn/
 
