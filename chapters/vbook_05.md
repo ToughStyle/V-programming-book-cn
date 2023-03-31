@@ -28,7 +28,7 @@
 
 以下是声明数组的语法：
 
-```
+```v
 arr := [VAL_1, VAL_2, .. VAL_N]
 ```
 
@@ -98,7 +98,7 @@ println(i)
 我们可以在声明数组时使用`init`属性为所有元素分配默认值，如下所示：
 
 ```v
-mut j:= []int {len: 3, init: 1}
+mut j := []int {len: 3, init: 1}
 println(j)
 ```
 
@@ -110,7 +110,7 @@ println(j)
 
 上述代码演示了`init`属性的使用，其中我们声明了一个具有初始长度为3的整数数组，并使用指定的默认值1填充了所有三个位置。
 
-### 使用cap属性声明具有初始容量的数组
+### 使用`cap`属性声明具有初始容量的数组
 
 还可以在声明期间指定数组的容量来定义数组。这种声明可变数组的方法通常可以提高向数组插入元素的性能：
 
@@ -129,7 +129,7 @@ println(k)
 
 我们可以使用<<运算符向数组添加值，例如`k<<1`。我们将在本章后面的部分学习更多关于使用<<运算符向数组添加值的内容。
 
-### 使用len和cap数组属性
+### 使用`len`和`cap`数组属性
 
 一旦声明了数组，该数组将公开两个只读属性，即`len`和`cap`。`len`属性表示数组的长度。具体来说，长度表示数组中实际存在的元素的数量。另一个属性`cap`表示数组的容量。
 让我们考虑以下展示数组属性使用的代码：
@@ -220,7 +220,7 @@ println(sports[1..3]) // 输出['hockey', 'football']
 ```
 在上面的代码中，我们对`sports`数组进行了切片，以输出从索引1开始到位置3的元素。
 
-注意我在这里使用的术语；[1..3] 范围中的第一个数字是1，表示索引，另一个数字3表示位置。
+注意我在这里使用的术语；`[1..3]` 范围中的第一个数字是1，表示索引，另一个数字3表示位置。
 
 切片数组时有各种条件：
 
@@ -588,7 +588,7 @@ fn main() {
     class: 9
 }]
 ```
-按名称反向排序的学生：
+按姓名反向排序的学生：
 ```v
 [Student{
     id: 3
@@ -611,15 +611,15 @@ V 允许您使用一个名为 `filter` 的函数来过滤数组，该函数已�
 
 例如，如果我们想在给定的整数数组中过滤所有3的倍数，我们可以使用`filter`函数应用过滤器，如下所示：
 ```v
- f:= [1、2、3、4、5、6、7、8、9]
+ f := [1、2、3、4、5、6、7、8、9]
 
- multiples_of_3:= f.filter(it％3 == 0)
+ multiples_of_3 := f.filter(it％3 == 0)
 
  println(multiples_of_3)// [3、6、9]
 ```
 `filter`函数也接受匿名函数。值得注意的是，这种带有匿名函数的过滤器可能需要更长的执行时间。让我们考虑以下代码：
 ```v
-fruits:= ['apple'、'mango'、'water melon'、'musk melon']
+fruits := ['apple'、'mango'、'water melon'、'musk melon']
 
 fruits_starting_m:=fruits.filter(fn (f string) bool {
 
@@ -657,9 +657,9 @@ println(res)
 ```
 数组上的`map`函数也可以接受匿名函数作为输入参数。例如，考虑使用带有匿名函数的数组的map函数的以下代码：
 ```v
-colors:=['red'、'blue'、'green'、'white'、'black']
+colors := ['red'、'blue'、'green'、'white'、'black']
 
-colors_with_letter_e :=colors.map(
+colors_with_letter_e := colors.map(
 
     fn (c string) int {
 
@@ -687,7 +687,7 @@ println(colors_with_letter_e)
 
 以下代码呈现了在V中定义映射的语法：
 ```v
-mut MAP_NAME:= map[KEY_TYPE]VALUE_TYPE{}
+mut MAP_NAME := map[KEY_TYPE]VALUE_TYPE{}
 ```
 上述语法显示了一个空可变映射的显式初始化。这里，`MAP_NAME`是映射的变量名称，遵循标准的变量命名约定。然后，在`:=`号的右侧，我们使用了`map`关键字。 `KEY_TYPE`必须是原始数据类型，如`string`、`rune`和`voidptr`或数值类型。 `KEY_TYPE`必须在`[`和`]`方括号之间表示。在指定键类型之后，我们需要提到值类型，然后是空的`{`和`}`花括号。
 显式初始化不支持在`{}`之间传递键值对作为参数，
@@ -706,7 +706,7 @@ MAP_NAME [KEY_N] = VALUE_N
 
 为了演示映射的用法，让我们声明一个书籍映射，它将书名作为键和页数作为值：
 ```v
-mut books:= map[string]int{}
+mut books := map[string]int{}
 ```
 我们定义了一个可变书籍映射，其中键保存书名，值是int类型以存储页数。 现在，让我们向我们的books映射添加几本书，如下所示：
 ```v
@@ -723,8 +723,8 @@ println(books)
 映射的简短语法初始化
 
 您还可以使用简短的语法在声明期间使用键值初始化映射，如下所示：
-```
-mut MAP_NAME:= map{
+```v
+mut MAP_NAME := map{
 
 KEY_1：VALUE_1
 
@@ -792,9 +792,9 @@ println(student_1 ['geography'])// 0
 
 让我们考虑同样的情况，当我们尝试访问地理学科的分数时; 除了返回0之外，它由V执行，我们可以使用or {}块显示详细的错误消息：
 ```v
-sub:='geography'
+sub := 'geography'
 
-res:= student_1[sub] or {panic('marks for subject $sub not yet updated')} // throws error
+res := student_1[sub] or {panic('marks for subject $sub not yet updated')} // throws error
 ```
 以下是输出：
 ```
