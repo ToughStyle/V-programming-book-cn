@@ -41,7 +41,7 @@ arr := [VAL_1, VAL_2, .. VAL_N]
 
 可以同时声明和初始化数组中的多个值。以下是大多数编程语言允许您声明和初始化数组的一般方式：
 
-```vlang
+```
 mut sports := [ 'cricket', 'hockey', 'football' ]
 ```
 
@@ -51,7 +51,7 @@ mut sports := [ 'cricket', 'hockey', 'football' ]
 
 必须使用`mut`关键字声明空数组，这样稍后才能添加或更新元素。以下代码显示了如何声明空数组：
 
-```vlang
+```
 mut <VAR_NAME> := []DATA_TYPE{}
 ```
 
@@ -59,14 +59,14 @@ mut <VAR_NAME> := []DATA_TYPE{}
 
 让我们根据上述语法创建一个空字符串数组：
 
-```vlang
+```
 mut animals := []string{}
 println(animals) // 输出空数组: []
 ```
 
 现在，我们将在可变的animals字符串数组上添加一个值：
 
-```vlang
+```
 animals << 'Chimpanzee'
 animals << 'Dog'
 println(animals) // ['Chimpanzee', 'Dog']
@@ -80,7 +80,7 @@ V允许您通过指定数组的属性值，例如`cap`、`len`和`init`来声明
 
 在声明数组时，可以将`len`数组属性分配给一个值，如下所示：
 
-```vlang
+```
 mut i := []int{len:3}
 println(i)
 ```
@@ -97,7 +97,7 @@ println(i)
 
 我们可以在声明数组时使用`init`属性为所有元素分配默认值，如下所示：
 
-```vlang
+```
 mut j:= []int {len: 3, init: 1}
 println(j)
 ```
@@ -114,7 +114,7 @@ println(j)
 
 还可以在声明期间指定数组的容量来定义数组。这种声明可变数组的方法通常可以提高向数组插入元素的性能：
 
-```vlang
+```
 mut k := []int{cap: 2}
 println(k)
 ```
@@ -134,7 +134,7 @@ println(k)
 一旦声明了数组，该数组将公开两个只读属性，即`len`和`cap`。`len`属性表示数组的长度。具体来说，长度表示数组中实际存在的元素的数量。另一个属性`cap`表示数组的容量。
 让我们考虑以下展示数组属性使用的代码：
 
-```vlang
+```
 mut sports := ['cricket', 'hockey', 'football']
 println(sports.len) // sports数组的长度
 println(sports.cap) // sports数组的容量
@@ -151,7 +151,7 @@ println(sports.cap) // sports数组的容量
 
 例如，如果我们从`sports`数组中删除一个元素，则长度减少一个，而容量保持不变：
 
-```vlang
+```
 sports.delete(2) // 删除football
 println('Length of sports array: $sports.len')
 println('Capacity of sports array: $sports.cap')
@@ -168,7 +168,7 @@ Capacity of sports array: 3
 
 现在，让我们使用`<<`运算符向`sports`数组添加两个新的运动：
 
-```vlang
+```
 sports << ['volleyball', 'baseball']
 println(sports)
 println('Length of sports array: $sports.len')
@@ -191,7 +191,7 @@ Capacity of sports array: 6
 
 例如，如果您想访问`sports`数组中的第二个元素，则可以按以下方式进行：
 
-```vlang
+```
 s := sports[1]
 println(s) // 输出hockey
 ```
@@ -202,7 +202,7 @@ println(s) // 输出hockey
 
 假设您要访问一系列元素，给定一个范围，那么您可以采用切分数组元素的方法。切片数组的结果为所提供范围内的部分元素数组。下面是用于对数组元素进行切片的语法：
 
-```vlang
+```
 ARRAY_VAR[STARTING_INDEX .. ENDING_POSITION]
 ```
 
@@ -213,7 +213,7 @@ ARRAY_VAR[STARTING_INDEX .. ENDING_POSITION]
 `STARTING_INDEX`是表示我们要开始对数组进行切片的元素的索引的整数。
 `ENDING_POSITION`也是一个整数，表示要将元素切成的实际位置，从而得到一个部分数组。
 与大多数编程语言(如Python、C#、Java、C等)类似，V中的索引从0开始。这意味着数组中的第一个元素用索引0来表示，下一个元素用索引1表示，依此类推。我们可以假设索引+1是表示数组中元素位置的实际数字。让我们考虑以下示例：
-```vlang
+```
 println(sports) // 输出['cricket', 'hockey', 'football']
 
 println(sports[1..3]) // 输出['hockey', 'football']
@@ -245,13 +245,13 @@ println(sports[1..3]) // 输出['hockey', 'football']
 `in`运算符可用于查找数组中元素的存在。`in`运算符的结果是一个布尔值。因此，我们也可以使用`!in`来表示如果数组中不存在元素则使用此运算符。
 
 使用in运算符与数组结合使用的语法如下所示：
-```vlang
+```
 NEEDLE in HAY_STACK
 ```
 上述语句表示使用`in`运算符与数组的语法。这里，左侧`NEEDLE`操作数表示我们要验证它是否在数组中存在。此外，`HAY_STACK`表示数组的变量名。我们必须确保`NEEDLE`操作数的类型与`HAY_STACK`数组持有的元素的类型相匹配。
 
 让我们考虑以下示例：
-```vlang
+```
 odd := [1, 3, 5, 7]
 
 println(3 in odd) // 输出：true
@@ -263,7 +263,7 @@ println(8 !in odd) // 输出：true
 ### `<<`运算符
 
 `<<`运算符可用于将值附加到可变数组的末尾。以下代码演示了向整数值数组附加值的过程：
-```vlang
+```
 mut even := [2, 4, 6]
 
 even << 8
@@ -271,7 +271,7 @@ even << 8
 println(even) // 输出[2, 4, 6, 8]
 ```
 `<<`运算符还允许您将数组附加到可变数组中：
-```vlang
+```
 even << [10, 12, 14]
 
 println(even) //输出[2, 4, 6, 8, 10, 12, 14]
@@ -294,7 +294,7 @@ V允许您定义固定大小的数组。这意味着一旦声明数组后，其�
 ### 定义固定大小数组
 
 让我们考虑以下代码，演示具有四个元素的整数固定大小数组的定义：
-```vlang
+```
 mut fix := [4]int{}
 
 println(fix) // [0, 0, 0, 0]
@@ -304,7 +304,7 @@ println(fix) // [0, 0, 0, 0]
 ### 更新固定大小数组的元素
 
 一旦定义了固定大小数组，您就可以通过使用`=`符号引用固定大小数组的索引添加元素：
-```vlang
+```
 fix[1] = 33
 
 println(fix) //[0, 33, 0, 0]
@@ -318,7 +318,7 @@ error: invalid operation: shift on type [4]int。
 ### 固定大小数组的数据类型
 
 让我们看一看使用以下代码定义的固定数组的数据类型：
-```vlang
+```
 println(typeof(fix).name) // [4]int
 ```
 在定义固定数组时给出的长度嵌入在其类型中，并表示为`[4]int`，用于名为`fix`的固定数组。
@@ -326,13 +326,13 @@ println(typeof(fix).name) // [4]int
 ### 对固定大小数组进行切片会导致普通数组
 
 在固定数组上执行切片会导致普通数组。让我们像下面这样对`fix`数组进行切片：
-```vlang
+```
 s := fix[1..]
 
 println(s) // [33, 0, 0]
 ```
 让我们看一下结果切片固定数组的类型，如下所示：
-```vlang
+```
 println(typeof(s).name) // 输出：[]int
 ```
 请注意，切片固定数组的结果是一个普通数组。
@@ -340,7 +340,7 @@ println(typeof(s).name) // 输出：[]int
 ### 多维数组
 
 V允许创建多维数组。让我们创建一个二维数组，它在二维平面上保持点坐标`(0,0)`、`(0,1)`、`(1,0)`和`(1,1)`，表示单位长度的正方形：
-```vlang
+```
 mut coordinates_2d := [][]int{ len:4 , init: []int{len: 2}}
 
 println(typeof(coordinates_2d).name)  // [][]int
@@ -350,11 +350,11 @@ println(coordinates_2d) // [[0, 0], [0, 0], [0, 0], [0, 0]]
 我们初始化了一个可变的二维整数数组，由类型`[][]int`表示。我们通过将`len`属性设置为4来使用名为`coordinates_2d`的变量初始化数组。然后，我们使用`init: []int{len: 2}`语句初始化了每个长度为2的4个数组。由于我们设置了 `init` 属性，因此第二维中的4个数组将被初始化为具有2个元素的默认整数值0。
 
 让我们检查`coordinates_2d`二维数组的长度：
-```vlang
+```
 println(coordinates_2d.len) // 输出：4
 ```
 让我们定义长度为2的数组，它们是一个单位长度正方形的点坐标：
-```vlang
+```
 point_1 := [0, 0]
 
 point_2 := [0, 1]
@@ -364,7 +364,7 @@ point_3 := [1, 0]
 point_4 := [1, 1]
 ```
 指定了长度为4的二维数组，所以我们已经使用 `len:4` 语句定义了它。因此，它可以容纳4个数组，每个数组都有2个元素的长度。让我们使用=符号将坐标值分配给`coordinates_2d`二维数组，其中四个坐标分别是`point_1`、`point_2`、`point_3`和`point_4`，如下所示：
-```vlang
+```
 coordinates_2d[0] = point_1
 
 coordinates_2d[1] = point_2
@@ -376,7 +376,7 @@ coordinates_2d[3] = point_4
 println(coordinates_2d) // [[0, 0], [0, 1], [1, 0], [1, 1]]
 ```
 进行操作： 创建具有四个点坐标的二维数组`coordinates_2d`，而不是单独从`point_1`到`point_4`定义数组，如上面的代码所示。这种方法的代码如下所示：
-```vlang
+```
 coordinates_2d = [
 
     [0, 0],
@@ -396,7 +396,7 @@ coordinates_2d = [
 同样，您也可以根据给出的二维数组示例创建多维数组。对数组执行各种操作我们可以对数组执行各种操作，例如排序、反转或过滤等。我们将研究最常用的数组函数，包括数组克隆、排序、过滤和映射技术。
 
 克隆数组要将数组复制到另一个数组中，您需要使用可用于要复制的数组的`clone`函数。使用`:=`进行传统的将数组分配给新变量的方法是不允许的，因为这种方法将会产生不安全的代码。为了实现这一点，我们使用`clone`函数，如下面的代码所示：
-```vlang
+```
 r := [1,2,3,4]
 
 mut u := r.clone() // 将数组r克隆到变量u中
@@ -408,7 +408,7 @@ println(u)
 [1, 2, 3, 4]
 ```
 在上面的代码中，我们可以观察到r不可变数组被克隆为可变数组`u`。直接将数组分配给新变量将会抛出错误。例如，让我们考虑运行以下代码时会发生什么情况：
-```vlang
+```
 s := r // 这将引发错误。
 ```
 程序将抛出一条错误消息，指出：
@@ -416,7 +416,7 @@ s := r // 这将引发错误。
 error: use array2 := array1.clone() instead of array2 := array1 (or use unsafe) .
 ```
 另一种复制数组的方法，正如前面的错误消息建议的那样，是使用`unsafe`将一个数组复制到一个新变量中：
-```vlang
+```
 s := unsafe { r }
 
 println(s)
@@ -440,7 +440,7 @@ println(s)
 在理解了排序数组的基本原则之后，我们将演示如何将排序应用于具有整数、字符串和结构类型元素的数组，并提供示例。
 
 按整数数组元素的大小对元素进行排序的代码如下所示：
-```vlang
+```
 mut i := [ 3, 2, 8, 1]
 
 i.sort() // 按升序排列
@@ -462,7 +462,7 @@ println(i)
 ### 对字符串数组进行排序
 
 现在，让我们对一个字符串数组进行排序，并查看结果如何：
-```vlang
+```
 mut fruits := ['Apples', 'avocado', 'banana', 'Orange']
 
 fruits.sort() // 升序
@@ -486,7 +486,7 @@ println(fruits)
 当任何数组的元素具有结构体时，这些特殊的 `a` 和 `b` 变量的目的将派上用场。在这种情况下，我们可以扩展排序语句，根据结构体字段对数组元素进行排序。
 
 例如，让我们考虑以下代码，演示如何对元素为结构体类型的数组进行排序：
-```vlang
+```
 module main
 
 struct Student {
@@ -541,7 +541,7 @@ fn main() {
 }
 ```
 我们创建了一个名为 `Student` 的结构体，其中包含三个结构体字段：`id`、`name` 和 `class`。然后，我们创建了三个学生并将这些学生添加到一个数组中。然后，我们根据 `id`、`name` 和 `class` 字段对学生进行了排序。对 `Student` 结构体数组执行的排序操作结果如下所示：
-```vlang
+```
 [Student{
     id: 1
     name: 'Ram'
@@ -557,7 +557,7 @@ fn main() {
 }]
 ```
 按 `id` 反向排序的学生：
-```vlang
+```
 [Student{
     id: 3
     name: 'Tom'
@@ -573,7 +573,7 @@ fn main() {
 }]
 ```
 按班级升序排序的学生：
-```vlang
+```
 [Student{
     id: 2
     name: 'Katy'
@@ -589,7 +589,7 @@ fn main() {
 }]
 ```
 按名称反向排序的学生：
-```vlang
+```
 [Student{
     id: 3
     name: 'Tom'
@@ -610,7 +610,7 @@ V 允许您使用一个名为 `filter` 的函数来过滤数组，该函数已�
 数组的过滤操作的结果总是返回一个与操作所应用的数组元素相似类型的数组。
 
 例如，如果我们想在给定的整数数组中过滤所有3的倍数，我们可以使用`filter`函数应用过滤器，如下所示：
-```vlang
+```
  f:= [1、2、3、4、5、6、7、8、9]
 
  multiples_of_3:= f.filter(it％3 == 0)
@@ -618,7 +618,7 @@ V 允许您使用一个名为 `filter` 的函数来过滤数组，该函数已�
  println(multiples_of_3)// [3、6、9]
 ```
 `filter`函数也接受匿名函数。值得注意的是，这种带有匿名函数的过滤器可能需要更长的执行时间。让我们考虑以下代码：
-```vlang
+```
 fruits:= ['apple'、'mango'、'water melon'、'musk melon']
 
 fruits_starting_m:=fruits.filter(fn (f string) bool {
@@ -644,7 +644,7 @@ V允许您映射任何数组的每个元素，以便产生另一种形式的新�
 与过滤器函数不同，`map`函数的结果可以产生包含类型相似或不同于执行`map`函数的数组的元素的数组。
 
 让我们考虑以下示例，将敬语附加到字符串数组的每个名称中：
-```vlang
+```
 visitor:=['Tom'、'Ram'、'Rao']
 
 res:= visitor.map('Mr.$it')
@@ -656,7 +656,7 @@ println(res)
 ['Mr.Tom'、'Mr.Ram'、'Mr.Rao']
 ```
 数组上的`map`函数也可以接受匿名函数作为输入参数。例如，考虑使用带有匿名函数的数组的map函数的以下代码：
-```vlang
+```
 colors:=['red'、'blue'、'green'、'white'、'black']
 
 colors_with_letter_e :=colors.map(
@@ -686,14 +686,14 @@ println(colors_with_letter_e)
 ###  显式初始化映射
 
 以下代码呈现了在V中定义映射的语法：
-```vlang
+```
 mut MAP_NAME:= map[KEY_TYPE]VALUE_TYPE{}
 ```
 上述语法显示了一个空可变映射的显式初始化。这里，`MAP_NAME`是映射的变量名称，遵循标准的变量命名约定。然后，在`:=`号的右侧，我们使用了`map`关键字。 `KEY_TYPE`必须是原始数据类型，如`string`、`rune`和`voidptr`或数值类型。 `KEY_TYPE`必须在`[`和`]`方括号之间表示。在指定键类型之后，我们需要提到值类型，然后是空的`{`和`}`花括号。
 显式初始化不支持在`{}`之间传递键值对作为参数，
 
 我们可以使用以下语法来初始化映射：
-```vlang
+```
 MAP_NAME [KEY_1] = VALUE_1
 
 MAP_NAME [KEY_2] = VALUE_2
@@ -705,11 +705,11 @@ MAP_NAME [KEY_N] = VALUE_N
 请注意，映射的值可以通过在 `[`和`]`方括号之间提到键，并在=符号后面的表达式右侧指定值来进行初始化。
 
 为了演示映射的用法，让我们声明一个书籍映射，它将书名作为键和页数作为值：
-```vlang
+```
 mut books:= map[string]int{}
 ```
 我们定义了一个可变书籍映射，其中键保存书名，值是int类型以存储页数。 现在，让我们向我们的books映射添加几本书，如下所示：
-```vlang
+```
 books ['V on Wheels'] = 320
 
 books ['Go for Dummies'] = 279
@@ -739,7 +739,7 @@ KEY_N：VALUE_N
 上述语法演示了如何使用变量定义可变映射，命名为`MAP_NAME`，遵循V的标准变量命名约定。 然后，值在`:=`号的右侧进行初始化，该号以接受每行指定的各种键值对的映射关键字开头。 这些键值对包含在`{`和`}`花括号中。 如果您在单行中定义映射，请使用逗号符分隔键值对。
 
 让我们创建一个学生在各科获得的分数映射：
-```vlang
+```
 mut student_1 := map{
 
 '英语'：90，
@@ -763,7 +763,7 @@ println(student_1)
 您可以使用`len`检查映射变量上提供的只读属性的键值对总数。
 
 让我们打印我们之前定义的`student_1`映射中键值对的总数：
-```vlang
+```
 cnt:= student_1.len
 
 println('student_1映射中有$cnt个键值对')
@@ -775,13 +775,13 @@ println('student_1映射中有$cnt个键值对')
 ### 检索映射的键的值
 
 假设我们想从`student_1`映射中检索物理学科的分数。 我们可以编写以下代码：
-```vlang
+```
 println(student_1 ['physics'])// 83
 ```
 ### 从映射中访问不存在的键
 
 如果我们尝试访问映射中不存在的键，则如果值是整数类型，则返回0；如果是字符串，则返回空字符串：
-```vlang
+```
 println(student_1 ['geography'])// 0
 ```
 在上面的代码中，我们试图访问`student_1`映射中不存在的地理学科的分数。
@@ -791,7 +791,7 @@ println(student_1 ['geography'])// 0
 我们可以优雅地处理从映射中检索到的键未找到的情况，使用`or {}`块并显示直观的错误消息。
 
 让我们考虑同样的情况，当我们尝试访问地理学科的分数时; 除了返回0之外，它由V执行，我们可以使用or {}块显示详细的错误消息：
-```vlang
+```
 sub:='geography'
 
 res:= student_1[sub] or {panic('marks for subject $sub not yet updated')} // throws error
@@ -809,7 +809,7 @@ V panic：marks for subject geography not yet updated
 
 为了演示如何更新映射的键值对的值，让我们考虑学生(`student_1`)的映射。我们将把英语科目的分数从90更新到93：
 
-```vlang
+```
 student_1['english'] = 93
 
 println(student_1)
@@ -826,7 +826,7 @@ println(student_1)
 您可以使用映射上可用的`delete`函数从可变映射中删除键值对。 `delete`函数接受需要删除的映射的键并使用结果更新映射变量。
 
 例如，如果我们想从`student_1`映射中删除物理学科的分数，则可以编写以下语句：
-```vlang
+```
 println('删除键前的键值对：$student_1.len')
 
 student_1.delete('physics')

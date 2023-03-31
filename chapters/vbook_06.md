@@ -25,7 +25,7 @@
 ### `if` 语句
 
 `if` 和 `if-else` 语块等条件语句允许您基于语句中评估的条件的结果来做出决策。评估可能涉及逻辑或关系运算符的结果。V 中的 `if` 语句允许您创建一个特殊的代码块，该代码块仅在满足 `if` 语句中提到的条件时执行。以下是编写 `if` 块的语法：
-```vlang
+```
 if CONDITION {
 
         // CONDITION 评估为 true
@@ -47,7 +47,7 @@ if CONDITION {
 `if-else` 语句允许您决定是否执行某个特定代码块，前提是 `if` 语句中的条件评估为 `true` ，并且处理该代码块的情况是条件评估为 `false` 时的情况。在 `if-else` 语块中，根据条件的评估结果，`if` 语块或 `else` 语块中的代码将执行其中之一。
 
 以下代码显示了使用 `if` 和 `else` 关键字编写 `if-else` 语块的语法：
-```vlang
+```
 if CONDITION {
 
         // CONDITION 评估为 true
@@ -63,7 +63,7 @@ if CONDITION {
 如前所述，在 `if-else` 的情况下，将执行至少一个代码块。在某些场景中，您可能希望对 `if` 语句的第一个条件进行自定义检查，并在其评估为 `false` 且不直接允许控制流执行 `else` 块中的代码时执行正在执行的代码。您可以为此类用例编写 `else if` 语句。
 
 这里显示了编写 `else if` 的语法，以及 `if` 和 `else：`
-```vlang
+```
 if CONDITION_1 {
 
         // CONDITION_1 评估为 true
@@ -81,7 +81,7 @@ if CONDITION_1 {
 与 `else` 块不同，`else if` 块需要指定条件。但是，拥有 `else` 块是可选的。您可以链接许多这样的 `else if` 块，这些块在 `if` 中与每个 `else if` 块中指定不同的条件。但是，一旦控制进入满足条件的任何块，将执行特定于该块的代码，并完全退出 `if`、`else-if` 和 `else` 链。
 让我们看一下以下代码：
 
-```vlang
+```
 module main
 
 fn breakfast_menu(day string) {
@@ -143,7 +143,7 @@ V 允许您标记代码并使用 `goto` 关键字引用执行控制。 `goto` �
 `goto` 语句必须包装在 `unsafe` 块中。这是因为 `goto` 允许程序执行流绕过变量初始化或返回访问已被释放的内存的代码。由于 `goto` 语句需要一个不安全块，因此应该避免使用它以防止违反内存安全的风险。
 
 以下代码显示了包装在 `unsafe` 块中的 `goto` 语句的语法：
-```vlang
+```
 sample_label:
 
         println('this will be called when goto is invoked')
@@ -156,7 +156,7 @@ unsafe {
 ```
 现在，让我们看一下以下演示使用 `goto` 语句的代码：
 
-```vlang
+```
 module main
 
 import os
@@ -223,7 +223,7 @@ fn main() {
 - `match` 作为模式匹配
 
 以下是使用 `match` 关键字的 `match` 语句的语法：
-```vlang
+```
 match VALUE {
 
     CONDITION_1 { /*CONDITION_1 匹配了。*/ }
@@ -255,7 +255,7 @@ match VALUE {
 ### `match` 语句块作为开关 `case`
 
 在 V 中，`match` 语句块可以用作传统的 `switch case`。我们可以通过使用 `match` 语句块来改写在 `Chaining else-if` 部分中看到的代码示例来了解这一点。让我们来看一下下面的代码：
-```vlang
+```
 module main
 
 fn breakfast_menu(day string) {
@@ -331,7 +331,7 @@ fn main() {
 在 `match` 语句块的多个条件执行相同操作的情况下，我们可以使用逗号来级联 `match` 语句块的条件。在前面的例子中，星期五和星期日的早餐菜单相同；同样，周二和周四的早餐菜单也相同。
 所以，我们可以将星期五和星期日的逻辑与星期二和星期四的逻辑合并在一个匹配块的条件中，如下所示:
 
-```vlang
+```
 module main
 
 fn breakfast_menu(day string) string {
@@ -406,7 +406,7 @@ Bread, Jam, Juice
 
 V 中的匹配块也接受枚举类型来匹配其封闭条件。枚举类型的字段用以表示带前缀 `. ` 点符号的字段名。由于枚举类型有一组定义的字段，当所有枚举字段都在匹配条件中提到时，使用 `else` 是被禁止的：
 
-```vlang
+```
 module main
 
 enum Day {
@@ -505,7 +505,7 @@ Bread, Jam, Juice
 
 以下代码演示了在 `match` 块中与枚举类型一起使用 `else` 的用法：
 
-```vlang
+```
 module main
 
 enum Day {
@@ -585,7 +585,7 @@ error: match must be exhaustive (add match branches for: .monday, .tuesday, .wed
 
 以下代码演示了使用 `match` 进行模式匹配的用法：
 
-```vlang
+```
 module main
 
 fn main() {
@@ -636,7 +636,7 @@ Person with 18 classified as a Child
 - 使用标签与`continue`和`break`语句
 
 首先，让我们看一下以下语法，展示如何使用`for`关键字和`in`运算符编写`循环：
-```vlang
+```
 for INDEX_VAR, VALUE_VAR in COLLECTION {
 
     // 访问每个元素的索引和值
@@ -658,7 +658,7 @@ for INDEX_VAR, VALUE_VAR in COLLECTION {
 ### 对`Map`进行遍历的`for`循环
 
 以下语法向您展示如何使用`for`循环在`Map`的键值对上进行迭代：
-```vlang
+```
 for KEY_VAR, VALUE_VAR in MAP_VAR {
 
     // 在此处访问键和值
@@ -668,7 +668,7 @@ for KEY_VAR, VALUE_VAR in MAP_VAR {
 在上述语法中，`KEY_VAR`和`VALUE_VAR`指示每个迭代器的`Map`的键和值。
 
 让我们来看看下面的代码：
-```vlang
+```
 module main
 
 fn main() {
@@ -706,7 +706,7 @@ Consolation prize lottery amount: 200 USD
 使用"_"防止将键或值分配给一个变量并常常被认为是一种内存高效的方法。
 
 以下代码使用`for`循环忽略了`basket Map`的键：
-```vlang
+```
 module main
 
 fn main() {
@@ -740,7 +740,7 @@ Total number of fruits: 22
 
 在数组类型上执行迭代将为您提供可选索引以及正在迭代的每个项目的值。以下是一个代码示例：
 
-```vlang
+```
 module main
 
 fn main() {
@@ -774,7 +774,7 @@ idx: 2   fruit: coconut
 
 以下代码演示了未声明索引变量的数组上的`for`循环每次迭代：
 
-```vlang
+```
 module main
 
 fn main() {
@@ -820,7 +820,7 @@ fn main() {
 
 有时，我们需要使用for循环跳过n个元素。您可以通过编写与C＃或C等大多数编程语言中通常使用的for循环相同的方式来实现此目的。V允许您以与C编程相同的方式编写`for`循环。以下代码显示了V中传统的C-style `for`循环：
 
-```vlang
+```
 module main
 
 fn main() {
@@ -854,7 +854,7 @@ fn main() {
 
 以下代码从最后一个元素开始打印数组的元素：
 
-```vlang
+```
 module main
 
 fn main() {
@@ -874,7 +874,7 @@ fn main() {
 
 与在数组上进行迭代不同，您无法在使用`for`循环迭代范围时声明索引变量。您可以使用`for`循环迭代范围的元素，如下所示：
 
-```vlang
+```
 module main
 
 fn main() {
@@ -908,7 +908,7 @@ fn main() {
 
 当在控制台程序中使用无限`for`循环时，通常用于接受用户输入并根据其确定操作。通常，这些类型的`for`循环需要外部干预才能停止其无限循环的执行。这些外部因素，例如强制停止程序的执行或与条件匹配的用户输入，在代码内部处理。
 这段代码展示了使用简单 `for` 语句的语法，不带任何条件进行循环，如下所示：
-```vlang
+```
 module main
 
 fn main() {
@@ -934,7 +934,7 @@ V 允许您在遇到 `break` 关键字时突然退出 `for` 循环。
 `break` 关键字停止 `for` 循环执行的迭代并退出它。通常， `break` 语句用于在满足我们定义的某些条件之后终止 `for` 循环。
 
 考虑以下代码，它描述了在 `for` 循环内使用 `break` 的用法：
-```vlang
+```
 module main
 
 import os
@@ -984,7 +984,7 @@ Greeted Hi 3 times
 有时，程序需要决定是继续执行代码块还是跳过并开始处理下一个元素的迭代。在这种情况下，可以使用 `continue` 关键字，遇到它时将停止当前迭代的执行并继续进行 `for` 循环中的下一项元素。
 
 以下代码描述了在 `for` 循环中使用 `continue` 的用法：
-```vlang
+```
 module main
 
 fn main() {
@@ -1023,7 +1023,7 @@ fn main() {
 就像 `goto` 语句引用标签一样，您还可以使用标签写 `continue` 和 `break` 语句。
 
 让我们考虑以下示例：
-```vlang
+```
 module main
 
 import os

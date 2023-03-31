@@ -38,7 +38,7 @@ v run filename.v
 
 默认情况下，声明变量时变量是不可变的。 不可变变量表示该值只能在声明期间分配一次，并且在声明后无法更新。 V使用mut关键字来方便声明可变变量。 可变变量允许您重新分配变量的值。 随着本章的阶段的推进，我们将更好地了解可变变量。 但是，现在，让我们看一下V中的简单变量声明，如下所示：
 
-```vlang
+```
 x:= 100
 ```
 
@@ -102,7 +102,7 @@ V允许使用字母数字字符来命名变量。除了字母数字字符外，�
 
 V中的并行赋值允许在单个行中同时声明多个变量，如下所示：
 
-```vlang
+```
 a，b，c := 3,4,5
 ```
 
@@ -110,14 +110,14 @@ a，b，c := 3,4,5
 
 同样，您可以同时声明所有可变变量，如下所示：
 
-```vlang
+```
 mut i，mut j:= 'Hi'，'Hello'
 ```
 前面的语句表示i和j可变变量同时声明并初始化为Hi和Hello字符串。
 
 由于i和j变量是可变的，因此我们可以执行并行重新分配值，例如以下内容：
 
-```vlang
+```
 i，j = 'Hi there'，'Hello，Good Day！'
 ```
 在这里，`=`符号用于重新分配值给`i`和`j`可变变量。
@@ -126,7 +126,7 @@ i，j = 'Hi there'，'Hello，Good Day！'
 
 您可以以并行形式声明既可变又不可变的变量。考虑以下代码：
 
-```vlang
+```
 mut msg，i:='Hello'，32
 
 println(msg)// Hello
@@ -146,37 +146,37 @@ i = 2 //错误：`i`是不可变的，请使用`mut`声明它以使其可变
 
 增强的赋值是一种在原地更新可变变量而不显式提及它们作为更新语句的方法。 V仅允许可变变量进行增强变量赋值。假设已声明了一个可变变量，如下所示：
 
-```vlang
+```
 mut greet:='Hi'
 ```
 
 假设需要将greet变量与其他文本连接起来。然后，通常，语句如下所示：
 
-```vlang
+```
 greet = greet +' there, How are you?'
 ```
 
 使用增强赋值，可以在原地连接greet变量，如下所示：
 
-```vlang
+```
 greet +=' Hope you have a great day!'
 ```
 
 或者，考虑以下示例：
 
-```vlang
+```
 mut cnt:=10
 ```
 
 假设您希望将cnt变量增加5;通常，您将编写添加cnt值的语句，然后再编写一个更新cnt变量的语句，如下所示：
 
-```vlang
+```
 cnt = cnt + 5
 ```
 
 或者，您可以对cnt变量执行原地增强赋值，如下所示：
 
-```vlang
+```
 cnt += 5
 ```
 
@@ -203,19 +203,19 @@ V中的变量遵循以下特征：
 
 以下是可变变量的语法：
 
-```vlang
+```
 mut <variable_name>:=<initializing_value>
 ```
 
 更新可变变量的语法如下：
 
-```vlang
+```
 <variable_name> = <updated_value>
 ```
 
 让我们考虑一个声明可变变量并将其更新为不同值的示例：
 
-```vlang
+```
 mut i:=10
 i = 100
 ```
@@ -228,27 +228,27 @@ i = 100
 
 让我们尝试使用字符串更新int类型的i可变变量，如下所示：
 
-```vlang
+```
 i ='Apple'
 ```
 
 尽管i变量是可变的，但此分配会导致错误。这是因为变量是int类型，但正在使用不同的数据类型字符串进行更新，因此会显示以下错误：
 
-```vlang
+```
 error: cannot assign to `i`: expected `int`, not `string`
 ```
 
 ### 不可变变量
 
 术语不可变指的是一旦定义，值就保持不变。在V中，默认情况下，变量(除非使用mut关键字声明)都是不可变的。以下是声明一个不可变的变量的语法:
-```vlang
+```
 <variable_name> := <initializing_value>
 ```
 
 
 让我们考虑以下示例：
 
-```vlang
+```
 msg := 'Hello'
 ```
 
@@ -256,13 +256,13 @@ msg := 'Hello'
 
 让我们使用与更新可变变量相似的语法强制更新`msg`不可变变量：
 
-```vlang
+```
 msg = 'Good Day!'
 ```
 
 更新不可变变量会导致错误，如下所示：
 
-```vlang
+```
 error: `msg` is immutable, declare it with `mut` to make it mutable
 ```
 
@@ -274,19 +274,19 @@ V要求您使用初始值定义变量。与其他编程语言(如C#或Java)不�
 
 让我们考虑以下示例：
 
-```vlang
+```
 mut i := 0
 ```
 
 根据语法，必须使用一些值初始化变量。让我们看看如果您只声明变量并留下值未分配会发生什么，如下所示：
 
-```vlang
+```
 mut a
 ```
 
 编译器将抛出错误，如下所示：
 
-```vlang
+```
 error: expecting `:=` (e.g. `mut x :=`)
 ```
 
@@ -296,7 +296,7 @@ error: expecting `:=` (e.g. `mut x :=`)
 
 为了演示，让我们看一下以下代码：
 
-```vlang
+```
 i := 'hello' 
 // i is not used anywhere, so warns when run
 // in dev mode and throws error when run in prod mode
@@ -363,7 +363,7 @@ V通过`-enable-globals`编译器标志来实现全局变量的启用，当您�
 
 让我们看一下以下代码，它演示了变量的作用域仅限于声明它的函数内部：
 
-```vlang
+```
 module main
 
 fn method1() {
@@ -381,7 +381,7 @@ fn main() {
 
 在条件语句和迭代器中声明的变量仅限于相应的条件语句或迭代器。让我们看一下以下代码：
 
-```vlang
+```
 module main
 
 fn method1() {
@@ -403,7 +403,7 @@ fn main() {
 
 变量一旦声明，在变量可访问的范围内就不能重新声明。例如，让我们看一下以下代码：
 
-```vlang
+```
 module main
 
 fn main() {
@@ -418,7 +418,7 @@ fn main() {
 
 V只允许在函数和脚本中定义变量；变量的名称仅保留作用域为函数。让我们看一下以下代码片段，在两个方法中声明了`x`变量：
 
-```vlang
+```
 module main
 
 fn method1() {
@@ -443,7 +443,7 @@ fn main() {
 
 在一些编程语言如Python和Java中，允许变量遮蔽，即在内部范围内以与外部范围中的变量相同的名称定义变量，并包含与在外部范围定义的变量不同的值。在其执行范围内，变量声明在外部范围将是相同的，除了在变量被遮蔽的内部范围中。V不允许您遮蔽变量。正如我们所学，使用相同的名称声明变量将导致错误。考虑以下代码：
 
-```vlang
+```
 module main
 
 fn scope_demo() {
@@ -472,7 +472,7 @@ fn scope_demo() {
 
 以下是使用 `const` 关键字声明常量的语法：
 
-```vlang
+```
 const <constant_name> = <constant_value>
 ```
 
@@ -482,7 +482,7 @@ const <constant_name> = <constant_value>
 
 以下示例演示了如何定义一个名为 `app_name` 的单个常量，其值为字符串类型：
 
-```vlang
+```
 const app_name = 'V on Wheels'
 ```
 
@@ -492,7 +492,7 @@ const app_name = 'V on Wheels'
 
 有时候需要定义多个常量。在理解定义常量的语法后，您可能会尝试定义多个常量，如下所示：
 
-```vlang
+```
 const app_name = 'V on Wheels'
 const max_connections = 1000
 const decimal_places = 2
@@ -501,7 +501,7 @@ const pi = 3.14
 
 定义多个常量的代码是有效的，但也可以定义不同数据类型的多个常量，如下所示：
 
-```vlang
+```
 const (
     app_name = 'V on Wheels'
     max_connections = 1000
@@ -520,7 +520,7 @@ V语言支持定义具有值设置为结构和函数的复杂常量。具有函�
 
 V语言允许您创建具有结构数据类型设置为值的复杂常量。让我们考虑以下演示将常量声明为结构数据类型的代码：
 
-```vlang
+```
 module main
 
 struct Space3D {
@@ -543,7 +543,7 @@ fn main() {
 
 输出结果如下： 
 
-```vlang
+```
 
 Space3D{
     x: 0
@@ -558,7 +558,7 @@ V允许将函数的结果分配给常量。在将函数分配给常量的过程�
 
 为了演示如何将函数评估的结果定义为常量，请考虑以下代码：
 
-```vlang
+```
 module main
 
 struct Space3D {
@@ -585,7 +585,7 @@ fn main() {
 
 输出结果如下：
 
-```vlang
+```
 Space3D{
     x: 0
     y: 0
@@ -612,7 +612,7 @@ Space3D{
 
 常量只能在模块级别声明。它们不能在函数内部声明。让我们考虑以下定义常量的示例：
 
-```vlang
+```
 module main
 
 const app_name = 'V on Wheels'
@@ -632,7 +632,7 @@ V on Wheels
 
 现在，让我们考虑如何在函数内部定义常量，如以下代码片段所示：
 
-```vlang
+```
 module main
 
 const app_name = 'V on Wheels'
@@ -654,7 +654,7 @@ error: const can only be defined at the top level
 
 除非在主要模块中另有定义，否则常量必须使用其模块来标识，即使它们在定义它们的同一模块内被使用也是如此。我们将在即将到来的章节中更详细地介绍模块。但是，为了简洁起见，让我们假设我们正在一个名为mod1的模块中定义常量，如下所示：
 
-```vlang
+```
 module mod1
 
 const greet_count = 5
@@ -687,7 +687,7 @@ pub fn do_work() {
 
 单行注释用于编写有关通常适合单行的被注释代码的简短详细信息。单行注释以双斜杠 `//` 开头，跟随您要描述代码的注释：
 
-```vlang
+```
 // greet function prints greetings to the console
 pub fn greet() {
     println('Hello, Welcome to the Jungle!')
@@ -700,7 +700,7 @@ pub fn greet() {
 
 有时，描述过于详细，超出了多行，或者您需要在列表项之间包含注释，例如
 
-```vlang
+```
 food := [ 'apple', 'orange', 'lays' /* not fruit */, 'mango'] 
 ```
 
@@ -708,7 +708,7 @@ V允许多行注释，以 `/*` 标记开头，以 `*/` 标记结尾，这两个�
 
 确保当您使用 `/*` 开始多行注释时，它具有适当的并对应的关闭 `*/` 标记，如下所示：
 
-```vlang
+```
 module main
 
 /*
@@ -729,7 +729,7 @@ fn main() {
 }
 ```
 代码中的注释可以适应模块、函数或结构体中的任何位置。单行注释也可以从语句结束的代码处开始，如下所示：
-```vlang
+```
 // constant
 fn main() {
 
