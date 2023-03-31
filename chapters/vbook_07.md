@@ -14,7 +14,7 @@
 
 ### 技术要求
 
-完整的本章源代码可在 https://github.com/ToughStyle/V-programming-book-cn/codes/Chapter07 上找到。
+完整的本章源代码可在 https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter07 上找到。
 
 ## 介绍函数
 
