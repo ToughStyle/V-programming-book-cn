@@ -16,7 +16,7 @@
 
 对于那些希望在本章节中跟随代码示例的读者，建议按照第二章"安装 V 编程"中提到的方式安装 V。要编写 V 代码，可以使用命令行终端和编辑器，例如 Nano 或 Vim。否则，也可以选择使用 Notepad ++、Visual Studio Code 或任何其他编程编辑器。
 
-本章节的完整源代码可在 https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter06 找到。
+本章节的完整源代码可在 [https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter06](https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter06) 找到。
 
 ## 条件块
 

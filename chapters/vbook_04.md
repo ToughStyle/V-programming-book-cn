@@ -20,7 +20,7 @@
 
 本章大部分代码可以通过访问V的REPL来运行，如第2章"安装V编程"中"访问V编程REPL"一节所述。建议为本章中的每个部分重新启动REPL，因为您可能会遇到相同变量名称的用法。
 
-你可以在这里找到本章所有代码片段：https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter04 。
+你可以在这里找到本章所有代码片段：[https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter04](https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter04) 。
 
 你也可以将代码片段另存为.v扩展名的文件名，然后访问命令行终端以以下方式运行代码：
 

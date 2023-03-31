@@ -26,7 +26,7 @@
 
 ### 技术要求
 
-本章完整的源代码可在https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter11 上获得。
+本章完整的源代码可在[https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter11](https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter11) 上获得。
 
 建议您在每个本章部分中的新的控制台或.v文件中运行代码示例。这将避免变量名之间的冲突。
 
