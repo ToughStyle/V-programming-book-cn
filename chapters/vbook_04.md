@@ -952,7 +952,7 @@ println(b) // Cam
 要对字符串进行分割，我们使用`split`函数，它接受一个字符串类型的单个输入参数，该参数表示要使用的分隔符值。分割的结果将返回一个字符串数组，每个元素都是根据提供的分隔符进行拆分操作的结果:
 
 ```v
-sp :='The tiny tiger tied the tie tighter to its tai'
+sp := 'The tiny tiger tied the tie tighter to its tai'
 
 res := sp.split(' ') // 使用空格作为分隔符进行分割
 
