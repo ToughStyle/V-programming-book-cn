@@ -13,6 +13,6 @@ GitBook本书籍链接: [https://toughstyle.gitbook.io/v-programming-book-cn/](h
 欢迎在Github上Star本项目和V语言项目!
 
 
-### [Github Languages Star History Comparison](https://star-history.com/#goplus/gop&vlang/v&nim-lang/nim&JuliaLang/julia&JetBrains/kotlin&rust-lang/rust&golang/go&ziglang/zig&carbon-language/carbon-lang&Date)
+### [Github Languages Star History Comparison](https://star-history.com/#goplus/gop&vlang/v&nim-lang/nim&JetBrains/kotlin&rust-lang/rust&JuliaLang/julia&golang/go&ziglang/zig&carbon-language/carbon-lang&Date)
 
-<img src="https://api.star-history.com/svg?repos=goplus/gop,vlang/v,nim-lang/nim,JuliaLang/julia,JetBrains/kotlin,rust-lang/rust,golang/go,ziglang/zig,carbon-language/carbon-lang&type=Date" title="Languages Star History Chart" style="zoom:80%">
+<img src="https://api.star-history.com/svg?repos=goplus/gop,vlang/v,nim-lang/nim,JetBrains/kotlin,rust-lang/rust,JuliaLang/julia,golang/go,ziglang/zig,carbon-language/carbon-lang&type=Date" title="Languages Star History Chart" style="zoom:50%">
