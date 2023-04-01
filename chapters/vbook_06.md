@@ -7,6 +7,8 @@
 在本章中，我们将涵盖以下主题：
 
 - 条件块
+  - `if`/`else`块
+  - `match`块 
 - 迭代语句
 
 通过本章的学习，您将能够在V中编写条件和迭代语句。
@@ -17,7 +19,7 @@
 
 本章节的完整源代码可在 [https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter06](https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter06) 找到。
 
-## 条件块
+## 条件`if`/`else`块
 
 通常，根据操作结果执行一些特定例程是必要的。在任何编程语言中，我们都可以通过条件语句(例如 `if` 语句或 `match` 块)来实现此目的。在本节中，我们将深入了解 V 提供的每个条件语块。我们将从 `if` 语句开始讨论。
 
@@ -207,7 +209,7 @@ fn main() {
 上面的代码检查从标准输入控制台提供的年龄变量。然后，它检查年龄输入是否符合某些标准。如果年龄是负数，则移动到逻辑上被命名为 `improper_input_age` 的代码，并执行打印 `Invalid input. Please provide value greater than 0` 的消息的代码。对于除 stop 外的所有其他输入，它都会检查是否有资格观看具有家长指导或没有的电影。然后，使用另一个带标签的 `goto` 语句 `next_person` 接受下一个队列中的人的年龄输入。此外，我们可以观察到，`goto` 代码块包含在 `unsafe` 块中。当输入提供为 `stop` 时，程序从执行中退出。
 
 现在，我们已经详细了解了 `if` 语句及其如何与代码示例一起使用的细节，接下来我们将继续学习如何在条件编程中使用 `match` 块。
-### `match`模式匹配
+## `match`块
 
 `match`语句块可以执行对代码块内指定的条件进行模式匹配的操作。在大多数情况下，它也被用作开关 `case` 语句。因为V语言没有 `switch case` 语句块，所以可以借助 `match` 语句块来实现类似的功能。
 
