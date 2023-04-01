@@ -357,7 +357,6 @@ fn main() {
 
     thursday_menu := breakfast_menu(Day.thursday)
     println(thursday_menu)
-
 }
 ```
 
