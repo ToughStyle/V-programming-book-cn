@@ -28,9 +28,7 @@
 `if` 和 `if-else` 语块等条件语句允许您基于语句中评估的条件的结果来做出决策。评估可能涉及逻辑或关系运算符的结果。V 中的 `if` 语句允许您创建一个特殊的代码块，该代码块仅在满足 `if` 语句中提到的条件时执行。以下是编写 `if` 块的语法：
 ```v
 if CONDITION {
-
         // CONDITION 评估为 true
-
 }
 ```
 上述语法演示了如何编写 `if` 语句。它以 `if` 关键字开始，后跟计算为 `true` 或 `false` 的布尔结果的条件。然后，语法遵循括在大括号 `{` 和 `}` 中的特殊代码块，只有在条件的结果评估为 `true` 时才会执行。
@@ -50,13 +48,9 @@ if CONDITION {
 以下代码显示了使用 `if` 和 `else` 关键字编写 `if-else` 语块的语法：
 ```v
 if CONDITION {
-
         // CONDITION 评估为 true
-
 } else {
-
         // CONDITION 评估为 false
-
 }
 ```
 ### `else-if` 链式语句
@@ -66,17 +60,11 @@ if CONDITION {
 这里显示了编写 `else if` 的语法，以及 `if` 和 `else：`
 ```v
 if CONDITION_1 {
-
         // CONDITION_1 评估为 true
-
 } else if CONDITION_2 {
-
         // CONDITION_2 评估为 true
-
 } else {
-
         // 没有条件评估为 true
-
 }
 ```
 与 `else` 块不同，`else if` 块需要指定条件。但是，拥有 `else` 块是可选的。您可以链接许多这样的 `else if` 块，这些块在 `if` 中与每个 `else if` 块中指定不同的条件。但是，一旦控制进入满足条件的任何块，将执行特定于该块的代码，并完全退出 `if`、`else-if` 和 `else` 链。
@@ -444,9 +432,9 @@ fn main() {
 
     res := match age {
         0...18 { 'Person with $age classified as a Child' }
-        
+
         19...120 { 'Person with $age classified as an Adult' }
-        
+
         else { '$age is must be in the range 0 to 120' }
     }
 
