@@ -371,29 +371,19 @@ fn main() {
 
 ```
 ----type definitions----
-
 variable ia is of type: i8
-
 variable ib is of type: i16
-
 variable ic is of type: int
 
 ----mixing types----
-
 variable iaa is of type: i8, after adding type i8 with itself
-
 variable ibb is of type: i16, after adding type i16 with itself
-
 variable icc is of type: int, after adding type int with itself
 
 ----type promotion----
-
 variable iab is promoted to type: i16, after adding type i8 with i16
-
 variable ibc is promoted to type: int, after subtracting type i16 with int
-
 Variable iba is promoted to the higher data type i16 which is carried from ib of type i16 divided
-
 Variable fa_iba is promoted to the higher data type f32 which is carried from fa of type f32 when added with variable iba of type i32
 ```
 
@@ -1021,19 +1011,12 @@ println(sp.count('-'))         // 0
 module main
 
 fn main() {
-
     hs := 'monday'
-
     if hs.contains('mon') {
-
         println('$hs contains mon')
-
     } else {
-
         println('$hs does not contains mon')
-
     }
-
 }
 ```
 
@@ -1051,19 +1034,12 @@ monday contains mon
 module main
 
 fn main() {
-
     hs := 'Monday'
-
     if hs.contains('mon') {
-
         println('$hs contains mon')
-
     } else {
-
         println('$hs does not contains mon')
-
     }
-
 }
 ```
 

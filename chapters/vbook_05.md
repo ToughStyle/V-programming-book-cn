@@ -1,6 +1,6 @@
 # 第5章 V中的数组和映射
 
-现在我们已经了解了V中的基本概念，包括变量、常量和原始类型，在本章中，我们将专注于数组和映射。我们将学习声明数组的不同方法以及在其声明期间使用各种属性来初始化它们。
+现在我们已经了解了V中的基本概念，包括变量、常量和原始数据类型，在本章中，我们将专注于数组和映射。我们将学习声明数组的不同方法以及在其声明期间使用各种属性来初始化它们。
 
 此外，我们将探讨在数组中使用`in`和`<<`运算符的方法。然后，我们将通过固定大小数组和多维数组的处理过程来更好地理解数组。
 
@@ -379,15 +379,10 @@ println(coordinates_2d) // [[0, 0], [0, 1], [1, 0], [1, 1]]
 进行操作： 创建具有四个点坐标的二维数组`coordinates_2d`，而不是单独从`point_1`到`point_4`定义数组，如上面的代码所示。这种方法的代码如下所示：
 ```v
 coordinates_2d = [
-
     [0, 0],
-
     [0, 1],
-
     [1, 0],
-
     [1, 1],
-
 ]
 ```
 请注意，即使在向现有多维数组添加项的这种方法中，我们仍然使用`=`符号后跟`[`开放方括号，而且每个元素都是长度为2的整数数组的表示形式，如先前声明`coordinates_2d`多维数组时所定义的一样。在指定了各个元素之后，然后我们使用`]`关闭方括号来关闭语句。
@@ -622,10 +617,8 @@ V 允许您使用一个名为 `filter` 的函数来过滤数组，该函数已�
 ```v
 fruits := ['apple'、'mango'、'water melon'、'musk melon']
 
-fruits_starting_m:=fruits.filter(fn (f string) bool {
-
+fruits_starting_m := fruits.filter(fn (f string) bool {
     return f.starts_with('m')
-
 })
 
 println(fruits_starting_m)
@@ -661,17 +654,11 @@ println(res)
 colors := ['red'、'blue'、'green'、'white'、'black']
 
 colors_with_letter_e := colors.map(
-
     fn (c string) int {
-
     if c.contains('e')return { 1
-
     } else {
-
         return 0
-
     }
-
 })
 
 println(colors_with_letter_e)
@@ -696,11 +683,8 @@ mut MAP_NAME := map[KEY_TYPE]VALUE_TYPE{}
 我们可以使用以下语法来初始化映射：
 ```v
 MAP_NAME [KEY_1] = VALUE_1
-
 MAP_NAME [KEY_2] = VALUE_2
-
 .
-
 MAP_NAME [KEY_N] = VALUE_N
 ```
 请注意，映射的值可以通过在 `[`和`]`方括号之间提到键，并在=符号后面的表达式右侧指定值来进行初始化。
@@ -726,15 +710,10 @@ println(books)
 您还可以使用简短的语法在声明期间使用键值初始化映射，如下所示：
 ```v
 mut MAP_NAME := map{
-
-KEY_1：VALUE_1
-
-KEY_2：VALUE_2
-
-.
-
-KEY_N：VALUE_N
-
+    KEY_1：VALUE_1
+    KEY_2：VALUE_2
+    .
+    KEY_N：VALUE_N
 }
 ```
 上述语法演示了如何使用变量定义可变映射，命名为`MAP_NAME`，遵循V的标准变量命名约定。 然后，值在`:=`号的右侧进行初始化，该号以接受每行指定的各种键值对的映射关键字开头。 这些键值对包含在`{`和`}`花括号中。 如果您在单行中定义映射，请使用逗号符分隔键值对。
@@ -742,15 +721,10 @@ KEY_N：VALUE_N
 让我们创建一个学生在各科获得的分数映射：
 ```v
 mut student_1 := map{
-
-'英语'：90，
-
-'数学'：96，
-
-'物理'：83，
-
-'化学'：89
-
+    '英语'：90，
+    '数学'：96，
+    '物理'：83，
+    '化学'：89
 }
 
 println(student_1)

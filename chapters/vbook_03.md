@@ -288,9 +288,7 @@ i := 'hello'
 // in dev mode and throws error when run in prod mode
 
 x := 3
-
 y := 2
-
 println(x + y)
 ```
 
@@ -308,11 +306,8 @@ v run unused-variable.v
 unused-variable.v:1:2: warning: unused variable: `i`
 
 1 | i := 'hello' // i is not used anywhere, so warns when run in dev mode and throws error where
-
   | ^
-
 2 | x := 3
-
 3 | y := 2
 ```
 

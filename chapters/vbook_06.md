@@ -86,47 +86,27 @@ if CONDITION_1 {
 module main
 
 fn breakfast_menu(day string) {
-
     if day == 'Monday' {
-
         println('Bread，Jam，Half boiled Egg')
-
     } else if day == 'Tuesday' {
-
         println('Bread，Jam，Juice')
-
     } else if day == 'Wednesday' {
-
         println('Milk，Bread，Fruit Bowl')
-
     } else if day == 'Thursday' {
-
         println('Bread，Jam，Juice')
-
     } else if day == 'Friday' {
-
         println('Cereals，Bread，Jam，Half boiled Egg')
-
     } else if day == 'Saturday' {
-
         println('Milk，Bread，Fruit Bowl')
-
     } else if day == 'Sunday' {
-
         println('Cereals，Bread，Jam，Half boiled Egg')
-
     } else {
-
         println('无效输入')
-
     }
-
 }
 
 fn main() {
-
     breakfast_menu('星期六')
-
 }
 ```
 前面的代码的输出如下所示：
@@ -146,13 +126,10 @@ V 允许您标记代码并使用 `goto` 关键字引用执行控制。 `goto` �
 以下代码显示了包装在 `unsafe` 块中的 `goto` 语句的语法：
 ```v
 sample_label:
-
-        println('this will be called when goto is invoked')
+    println('this will be called when goto is invoked')
 
 unsafe {
-
     goto sample_label
-
 }
 ```
 现在，让我们看一下以下演示使用 `goto` 语句的代码：
@@ -163,45 +140,27 @@ module main
 import os
 
 fn main() {
-
     improper_input_age:
-
     println('无效输入。请提供大于0的值。')
-
     next_person:
-
     inp := os.input('请输入您的年龄：')
-
     if inp != 'stop' {
-
         age := inp.int()
-
         if age >= 13 {
-
             println('您可以观看这部电影')
-
         } else if age > 0 && age < 13 {
 
             println('需要家长指导才能观看此电影')
-
         } else if age <= 0 {
-
             unsafe {
-
                 goto improper_input_age
-
             }
-
         }
 
         unsafe {
-
             goto next_person
-
         }
-
     }
-
 }
 
 ```
@@ -226,17 +185,11 @@ fn main() {
 以下是使用 `match` 关键字的 `match` 语句的语法：
 ```v
 match VALUE {
-
     CONDITION_1 { /*CONDITION_1 匹配了。*/ }
-
     CONDITION_2 { /*CONDITION_2 匹配了。*/ }
-
     ..
-
     CONDITION_N { /*CONDITION_N 匹配了。*/ }
-
     else { /*没有任何一种模式匹配。执行其他程序。*/ }
-
 }
 ```
 在上述语法中，`match` 关键字期望 `VALUE` 与其内部定义的所有条件具有相似的数据类型。此外，必须声明我们在前述语法中添加的所有模式(代替条件的位置)都属于相似的数据类型。否则，程序将抛出一个错误，提示无法与条件匹配。除非针对枚举类型声明了 `match`，否则必须声明一个 `else` 条件，作为在没有条件得到满意的匹配时的终点。
@@ -260,65 +213,37 @@ match VALUE {
 module main
 
 fn breakfast_menu(day string) {
-
     match day {
-
         'Monday' {
-
             println('面包，果酱，半煮蛋')
-
         }
-
         'Tuesday' {
-
             println('面包，果酱，果汁')
-
         }
-
         'Wednesday' {
-
             println('牛奶，面包，水果碗')
 
         }
-
         'Thursday' {
-
             println('面包，果酱，果汁')
-
         }
-
         'Friday' {
-
             println('麦片，面包，果酱，半煮蛋')
-
         }
-
         'Saturday' {
-
             println('牛奶，面包，水果碗')
-
         }
-
         'Sunday' {
-
             println('麦片，面包，果酱，半煮蛋')
-
         }
-
         else {
-
             println('无效输入')
-
         }
-
     }
-
 }
 
 fn main() {
-
     breakfast_menu('Sunday')
-
 }
 ```
 下面是上述代码的输出：
@@ -336,54 +261,33 @@ fn main() {
 module main
 
 fn breakfast_menu(day string) string {
-
     return match day {
-
         'Monday' {
-
             'Bread, Jam, Half boiled Egg'
-
         }
-
         'Tuesday', 'Thursday', 'Friday', 'Sunday' {
-
             'Cereals, Bread, Jam, Half boiled Egg'
-
         }
-
         'Wednesday', 'Saturday' {
-
             'Milk, Bread, Fruit Bowl'
-
         }
-
         else {
-
             'invalid input'
-
         }
-
     }
-
 }
 
 fn main() {
-
     friday_menu := breakfast_menu('Friday')
-
     println(friday_menu)
 
     sunday_menu := breakfast_menu('Sunday')
-
     println(sunday_menu)
 
-
     tuesday_menu := breakfast_menu('Tuesday')
-
     println(tuesday_menu)
 
     thursday_menu := breakfast_menu('Thursday')
-
     println(thursday_menu)
 
 }
@@ -411,77 +315,46 @@ V 中的匹配块也接受枚举类型来匹配其封闭条件。枚举类型的
 module main
 
 enum Day {
-
     sunday
-
     monday
-
     tuesday
-
     wednesday
-
     thursday
-
     friday
-
     saturday
-
 }
 
 fn breakfast_menu(day Day) string {
-
     return match day {
-
         .monday {
-
             'Bread, Jam, Half boiled Egg'
-
         }
-
         .tuesday, .thursday {
-
             'Bread, Jam, Juice'
-
         }
-
         .wednesday {
-
             'Milk, Bread, Fruit Bowl'
-
         }
-
         .friday, .sunday {
-
             'Cereals, Bread, Jam, Half boiled Egg'
-
         }
-
         .saturday {
-
             'Milk, Bread, Fruit Bowl'
-
         }
-
     }
-
 }
 
 fn main() {
-
     friday_menu := breakfast_menu(Day.friday)
-
     println(friday_menu)
 
     sunday_menu := breakfast_menu(Day.sunday)
-
     println(sunday_menu)
 
     tuesday_menu := breakfast_menu(Day.tuesday)
-
     println(tuesday_menu)
 
     thursday_menu := breakfast_menu(Day.thursday)
-
     println(thursday_menu)
 
 }
@@ -510,57 +383,35 @@ Bread, Jam, Juice
 module main
 
 enum Day {
-
     sunday
-
     monday
-
     tuesday
-
     wednesday
-
     thursday
-
     friday
-
     saturday
-
 }
 
 fn weekend_breakfast_menu(day Day) string {
-
     return match day {
-
         .sunday {
-
             'Cereals, Bread, Jam, Half boiled Egg'
-
         }
-
         .saturday {
 
             'Milk, Bread, Fruit Bowl'
-
         }
-
         else {
-
             'Sorry, we are closed on weekdays!'
-
         }
-
     }
-
 }
 
 fn main() {
-
     sunday_menu := weekend_breakfast_menu(Day.sunday)
-
     println(sunday_menu)
 
     tuesday_menu := weekend_breakfast_menu(Day.tuesday)
-
     println(tuesday_menu)
 
 }
@@ -590,21 +441,15 @@ error: match must be exhaustive (add match branches for: .monday, .tuesday, .wed
 module main
 
 fn main() {
-
     age := 18
 
     res := match age {
-
         0...18 { 'Person with $age classified as a Child' }
-
         19...120 { 'Person with $age classified as an Adult' }
-
         else { '$age is must be in the range 0 to 120' }
-
     }
 
     println(res)
-
 }
 ```
 
@@ -639,9 +484,7 @@ Person with 18 classified as a Child
 首先，让我们看一下以下语法，展示如何使用`for`关键字和`in`运算符编写`循环：
 ```v
 for INDEX_VAR, VALUE_VAR in COLLECTION {
-
     // 访问每个元素的索引和值
-
 }
 ```
 从上述语法可以看出，`for`循环以`for`关键字开始，然后声明了两个变量：`INDEX_VAR和VALUE_VAR`。然后是`in`运算符，它希望在其之后指定包含集合的变量。
@@ -673,23 +516,15 @@ for KEY_VAR, VALUE_VAR in MAP_VAR {
 module main
 
 fn main() {
-
     lottery := map{
-
         'First':       1000
-
         'Second':      700
-
         'Consolation': 200
-
     }
 
     for k, v in lottery {
-
         println('$k prize lottery amount: $v')
-
     }
-
 }
 ```
 以下是我们代码示例的输出：
@@ -711,25 +546,18 @@ Consolation prize lottery amount: 200 USD
 module main
 
 fn main() {
-
     basket := map{
-
         'apples':  10
-
         'bananas': 12
-
     }
 
     mut total := 0
 
     for _, v in basket {
-
         total += v
-
     }
 
     println('Total number of fruits: $total')
-
 }
 ```
 下面是输出结果：
@@ -745,15 +573,11 @@ Total number of fruits: 22
 module main
 
 fn main() {
-
     fruits := ['apple', 'banana', 'coconut']
 
     for idx, ele in fruits {
-
         println('idx: $idx \t fruit: $ele')
-
     }
-
 }
 ```
 
@@ -879,13 +703,9 @@ fn main() {
 module main
 
 fn main() {
-
     for val in 0 .. 4 {
-
         println(val)
-
     }
-
 }
 ```
 
@@ -893,11 +713,8 @@ fn main() {
 
 ```
 0
-
 1
-
 2
-
 3
 ```
 
@@ -913,17 +730,12 @@ fn main() {
 module main
 
 fn main() {
-
     mut count := 1
 
     for {
-
         println('Hi $count times')
-
         count += 1
-
     }
-
 }
 ```
 你可能已经注意到了，在上一个示例中，由于没有任何限定条件，`for` 循环会不断打印，直到我们强行停止程序的执行。前面的代码没有任何限制条件。我们可以使用 break 关键字为这种情况引入条件。
@@ -941,7 +753,6 @@ module main
 import os
 
 fn main() {
-
     mut count := 0
 
     input := os.input('Enter number of times to Greet:')
@@ -949,17 +760,11 @@ fn main() {
     limit := input.int()
 
     for {
-
         if count >= limit {
-
                 break
-
         }
-
         println('Hi')
-
         count += 1
-
     }
 
     println('Greeted Hi $count times')
@@ -989,32 +794,23 @@ Greeted Hi 3 times
 module main
 
 fn main() {
-
     for i in 0 .. 10 {
 
         if i % 2 == 0 { // skips printing number
         // that is a multiple of 2
-
             continue
-
         }
 
         println(i)
-
     }
-
 }
 ```
 下面是输出：
 ```
 1
-
 3
-
 5
-
 7
-
 9
 ```
 在前面的代码中，`for` 循环正在打印奇数。因此，如果 i 迭代变量所持有的值是偶数，则使用 `continue` 语句尽早退出迭代。请注意，当 `i % 2 == 0` 语句的结果等于 `true` 时，将执行 `continue` 语句。
@@ -1030,37 +826,24 @@ module main
 import os
 
 fn main() {
-
     input := os.input('Enter the number of
-
         multiplication tables to print:')
 
     limit := input.int()
 
     if limit <= 0 {
-
         return
-
     }
 
     first_loop: for i := 1; i <= 10; i++ {
-
         println('Printing multiplication table for $i')
-
         for j := 1; j <= 10; j++ {
-
                 mul := i * j
-
                 println('$i * $j = $mul')
-
                 if mul >= limit * 10 {
-
                     break first_loop
-
                 }
-
         }
-
         println('*********')
 
     }
@@ -1074,23 +857,14 @@ Enter the number (1 to 10):2
 Printing multiplication table for 1
 
 1 * 1 = 1
-
 1 * 2 = 2
-
 1 * 3 = 3
-
 1 * 4 = 4
-
 1 * 5 = 5
-
 1 * 6 = 6
-
 1 * 7 = 7
-
 1 * 8 = 8
-
 1 * 9 = 9
-
 1 * 10 = 10
 
 *********
@@ -1098,23 +872,14 @@ Printing multiplication table for 1
 Printing multiplication table for 2
 
 2 * 1 = 2
-
 2 * 2 = 4
-
 2 * 3 = 6
-
 2 * 4 = 8
-
 2 * 5 = 10
-
 2 * 6 = 12
-
 2 * 7 = 14
-
 2 * 8 = 16
-
 2 * 9 = 18
-
 2 * 10 = 20
 ```
 上述代码打印了1到10之间的乘法表，但是我们可以使用程序的输入来限制要打印的表的数量。当 `mul >= limit * 10` 语句结果为 `true` 时，根据所评估的条件，我们在满足输入标准后结束执行。该语句会在遇到 `break first_loop` 语句时中断 `for` 循环的执行，即带有标签 `first_loop` 的 `for` 循环。因此，带标签的 `break` 或 `continue` 语句可用于控制嵌套的 `for` 循环的执行。
