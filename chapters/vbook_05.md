@@ -14,7 +14,8 @@
 
 - 数组
 - 映射
-- 技术参考
+  
+## 技术参考
 
 本章完整的源代码可在 [https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter05](https://github.com/ToughStyle/V-programming-book-cn/tree/main/codes/Chapter05) 中获得。
 
@@ -81,7 +82,7 @@ V允许您通过指定数组的属性值，例如`cap`、`len`和`init`来声明
 在声明数组时，可以将`len`数组属性分配给一个值，如下所示：
 
 ```v
-mut i := []int{len:3}
+mut i := []int{len: 3}
 println(i)
 ```
 
@@ -98,7 +99,7 @@ println(i)
 我们可以在声明数组时使用`init`属性为所有元素分配默认值，如下所示：
 
 ```v
-mut j := []int {len: 3, init: 1}
+mut j := []int{len: 3, init: 1}
 println(j)
 ```
 
@@ -341,7 +342,7 @@ println(typeof(s).name) // 输出：[]int
 
 V允许创建多维数组。让我们创建一个二维数组，它在二维平面上保持点坐标`(0,0)`、`(0,1)`、`(1,0)`和`(1,1)`，表示单位长度的正方形：
 ```v
-mut coordinates_2d := [][]int{ len:4 , init: []int{len: 2}}
+mut coordinates_2d := [][]int{len: 4 , init: []int{len: 2}}
 
 println(typeof(coordinates_2d).name)  // [][]int
 
@@ -790,7 +791,7 @@ println(student_1 ['geography'])// 0
 
 我们可以优雅地处理从映射中检索到的键未找到的情况，使用`or {}`块并显示直观的错误消息。
 
-让我们考虑同样的情况，当我们尝试访问地理学科的分数时; 除了返回0之外，它由V执行，我们可以使用or {}块显示详细的错误消息：
+让我们考虑同样的情况，当我们尝试访问地理学科的分数时; 除了返回0之外，它由V执行，我们可以使用`or {}`块显示详细的错误消息：
 ```v
 sub := 'geography'
 
