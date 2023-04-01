@@ -398,7 +398,6 @@ fn weekend_breakfast_menu(day Day) string {
             'Cereals, Bread, Jam, Half boiled Egg'
         }
         .saturday {
-
             'Milk, Bread, Fruit Bowl'
         }
         else {
@@ -445,7 +444,9 @@ fn main() {
 
     res := match age {
         0...18 { 'Person with $age classified as a Child' }
+        
         19...120 { 'Person with $age classified as an Adult' }
+        
         else { '$age is must be in the range 0 to 120' }
     }
 
