@@ -142,8 +142,10 @@ import os
 fn main() {
     improper_input_age:
     println('无效输入。请提供大于0的值。')
+
     next_person:
     inp := os.input('请输入您的年龄：')
+
     if inp != 'stop' {
         age := inp.int()
         if age >= 13 {
@@ -222,7 +224,6 @@ fn breakfast_menu(day string) {
         }
         'Wednesday' {
             println('牛奶，面包，水果碗')
-
         }
         'Thursday' {
             println('面包，果酱，果汁')
@@ -504,9 +505,7 @@ for INDEX_VAR, VALUE_VAR in COLLECTION {
 以下语法向您展示如何使用`for`循环在`Map`的键值对上进行迭代：
 ```v
 for KEY_VAR, VALUE_VAR in MAP_VAR {
-
     // 在此处访问键和值
-
 }
 ```
 在上述语法中，`KEY_VAR`和`VALUE_VAR`指示每个迭代器的`Map`的键和值。
@@ -603,23 +602,15 @@ idx: 2   fruit: coconut
 module main
 
 fn main() {
-
     col := [1, 2, 3, 4, 5, 6, 7]
 
     for val in col {
-
         if val % 2 == 0 {
-
             println('$val is Even')
-
         } else {
-
             println('$val is Odd')
-
         }
-
     }
-
 }
 ```
 
@@ -627,15 +618,10 @@ fn main() {
 
 ```
 1 is Odd
-
 2 is Even
-
 3 is Odd
-
 4 is Even
-
 5 is Odd
-
 6 is Even
 ```
 
@@ -649,15 +635,11 @@ fn main() {
 module main
 
 fn main() {
-
     sample := [3, 4, 23, 12, 4, 1, 45, 12, 42, 17, 92, 38]
 
     for i := 0; i < sample.len; i += 3 {
-
         println(sample[i])
-
     }
-
 }
 ```
 
@@ -665,11 +647,8 @@ fn main() {
 
 ```
 3
-
 12
-
 45
-
 17
 ```
 
@@ -683,15 +662,11 @@ fn main() {
 module main
 
 fn main() {
-
     subjects := ['zoology', 'chemistry', 'physics', 'algebra']
 
     for i := subjects.len - 1; i >= 0; i-- {
-
         println(subjects[i])
-
     }
-
 }
 ```
 
@@ -774,13 +749,9 @@ fn main() {
 前面代码的输出如下所示：
 ```
 Enter number of times to Greet:3
-
 Hi
-
 Hi
-
 Hi
-
 Greeted Hi 3 times
 ```
 现在，我们正在限制次数，这由用户输入进行控制，然后在满足 `count>=limit` 条件时，我们使用 `break` 语句退出 `for` 循环。
