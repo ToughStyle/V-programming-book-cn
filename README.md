@@ -11,7 +11,7 @@ GitBook本书籍链接: [https://toughstyle.gitbook.io/v-programming-book-cn/](h
 
 欢迎在Github上Star本项目和V语言项目!
 
-加入QQ群学习讨论更方便: 550177672
+加入QQ群学习讨论更方便, V语言中文交流群: 830827849
 
 ### [Github Languages Star History Comparison](https://star-history.com/#goplus/gop&vlang/v&nim-lang/nim&JetBrains/kotlin&rust-lang/rust&JuliaLang/julia&golang/go&ziglang/zig&carbon-language/carbon-lang&Date)
 
